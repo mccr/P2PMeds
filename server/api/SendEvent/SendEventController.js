@@ -32,6 +32,7 @@ module.exports = {
     update: (req, res) => {
         const id = req.params.id;
         SendEventModel.findOne({_id: id})
+        .exec()
         .then( SendEvent => {
           if (!SendEvent) res.status(404).json({message: 'No such SendEvent'});
 

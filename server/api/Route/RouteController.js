@@ -12,6 +12,7 @@ module.exports = {
      */
     list: (req, res) => {
         RouteModel.find()
+        .exec()
         .then( Routes => res.json(Routes))
         .catch( err => {
           return res.status(500).json({
@@ -27,6 +28,7 @@ module.exports = {
     show: (req, res) => {
         const id = req.params.id;
         RouteModel.findOne({_id: id})
+        .exec()
         .then( Route => {
             if (!Route) return res.status(404).json({message: 'No such Route'});
             return res.json(Route);
@@ -67,6 +69,7 @@ module.exports = {
     update: (req, res) => {
         const id = req.params.id;
         RouteModel.findOne({_id: id})
+        .exec()
         .then(Route => {
 
             if (!Route) return res.status(404).json({message: 'No such Route'});
@@ -93,6 +96,7 @@ module.exports = {
     remove: (req, res) => {
         const id = req.params.id;
         RouteModel.findByIdAndRemove(id)
+        .exec()
         .then( Route => res.status(204).json())
         .catch( err => {
           return res.status(500).json({

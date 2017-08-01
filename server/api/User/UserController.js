@@ -12,6 +12,7 @@ module.exports = {
   show: (req, res) => {
     const id = req.params.id;
     UserModel.findOne({_id: id})
+      .exec()
       .then(User => {
         if (!User) return res.status(404).json({message: 'No such User'});
         return res.json(User);
@@ -29,6 +30,7 @@ module.exports = {
   update: (req, res) => {
     const id = req.params.id;
     UserModel.findOne({_id: id})
+      .exec()
       .then(User => {
         if (!User) return res.status(404).json({message: 'No such User'});
 

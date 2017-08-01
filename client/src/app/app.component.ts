@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SessionService } from '../shared/session.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+
+  constructor(private session: SessionService) { }
+
+  logout(){
+    this.session.logout().subscribe();
+  }
 }

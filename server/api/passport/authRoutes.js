@@ -9,13 +9,17 @@ const router  = express.Router();
 router.get("/facebook", passport.authenticate("facebook", { scope: 'email'}));
 
 router.get("/facebook/callback", passport.authenticate("facebook", {
-  successRedirect: "/my-trips",
+  successRedirect: "/",
   failureRedirect: "/"
 }));
 
 router.get("/logout", (req, res, next) => {
   req.logout();
   res.redirect('/');
+});
+
+router.get('/loggedin', (req, res, next) => {
+  return res.status(200).json(req.user);
 });
 
 

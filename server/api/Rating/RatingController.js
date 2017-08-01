@@ -33,6 +33,7 @@ module.exports = {
     update: (req, res) => {
         const id = req.params.id;
         RatingModel.findOne({_id: id})
+        .exec()
         .then(Rating => {
           if (!Rating) res.status(404).json({message: 'No such Rating'});
 
@@ -58,6 +59,7 @@ module.exports = {
     remove: (req, res) => {
         const id = req.params.id;
         RatingModel.findByIdAndRemove(id)
+        .exec()
         .then(Rating => res.status(204).json())
         .catch( err => {
           return res.status(500).json({
