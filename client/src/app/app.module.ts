@@ -7,12 +7,14 @@ import { SessionService } from '../shared/session.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
+import { RouteComponent } from './route/route.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    UserComponent
+    UserComponent,
+    RouteComponent
   ],
   imports: [
     BrowserModule

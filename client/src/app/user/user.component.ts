@@ -17,4 +17,7 @@ export class UserComponent implements OnInit {
   show(id) {
     this.UserService.show(id).subscribe();
   }
+  update(id, email) {
+    this.UserService.update(id, email).subscribe();
+  }
 }
