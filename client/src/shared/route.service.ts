@@ -9,6 +9,8 @@ export class RouteService {
   endpoint: string;
   options:object = {withCredentials:true};
 
+  params = new URLSearchParams();
+
   constructor(
     private http:Http,
     @Inject('BASE_ENDPOINT') private BASE,
@@ -22,8 +24,11 @@ export class RouteService {
     return Observable.throw(e.json().message);
   }
 
-  list():Observable<object> {
-    return this.http.get(`${this.endpoint}/`, this.options)
+  list(query):Observable<object> {
+    this.params['from'] = query.from;
+    this.params['to'] = query.to;
+    this.params['date'] = query.date;
+    return this.http.get(`${this.endpoint}/route/list`, {withCredentials:true, params: this.params})
       .map(res => res.json())
       .catch(this.handleError);
   }
@@ -35,19 +40,20 @@ export class RouteService {
   }
 
   create(Route):Observable<object> {
-    return this.http.post(`${this.endpoint}/`, Route, this.options)
+    console.log(Route)
+    return this.http.post(`${this.endpoint}/route`, Route, this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   update(id:string, Route):Observable<object> {
-    return this.http.put(`${this.endpoint}/${id}`, Route, this.options)
+    return this.http.put(`${this.endpoint}/route/${id}`, Route, this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   remove(id:string):Observable<object> {
-    return this.http.delete(`${this.endpoint}/${id}`, this.options)
+    return this.http.delete(`${this.endpoint}/route/${id}`, this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }

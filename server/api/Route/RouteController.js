@@ -11,9 +11,16 @@ module.exports = {
      * RouteController.list()
      */
     list: (req, res) => {
-        RouteModel.find()
+        RouteModel.find({
+          from: req.query.from,
+          to: req.query.to,
+          date : { $gte : new Date(req.query.date) }
+        })
         .exec()
-        .then( Routes => res.json(Routes))
+        .then( routes => {
+          console.log(routes);
+          return res.status(200).json(routes);
+        })
         .catch( err => {
           return res.status(500).json({
                   message: 'Error when getting Route.',
@@ -45,12 +52,12 @@ module.exports = {
      * RouteController.create()
      */
     create: (req, res) => {
+      console.log(req.body);
         const Route = new RouteModel({
     			from : req.body.from,
     			to : req.body.to,
-    			date : req.body.date,
-    			creator_id : req.body.creator_id,
-    			sendEvent : []
+    			date : new Date(req.body.date),
+    			creator_id : req.user
         });
 
         Route.save()
@@ -77,7 +84,6 @@ module.exports = {
           Route.from = req.body.from ? req.body.from : Route.from;
     			Route.to = req.body.to ? req.body.to : Route.to;
     			Route.date = req.body.date ? req.body.date : Route.date;
-    			Route.sendEvent = req.body.sendEvent ? req.body.sendEvent : Route.sendEvent;
 
           Route.save()
           .then(Route => res.json(Route))

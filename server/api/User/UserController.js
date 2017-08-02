@@ -35,8 +35,6 @@ module.exports = {
         if (!User) return res.status(404).json({message: 'No such User'});
 
         User.email = req.body.email ? req.body.email : User.email;
-        User.sendEvent = req.body.sendEvent ? req.body.sendEvent : User.sendEvent;
-        User.rating = req.body.rating ? req.body.rating : User.rating;
         User.badge = req.body.badge ? req.body.badge : User.badge;
 
         return User;

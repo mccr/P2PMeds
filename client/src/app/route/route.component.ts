@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RouteService } from '../../shared/route.service';
+
 
 @Component({
   selector: 'app-route',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./route.component.css']
 })
 export class RouteComponent implements OnInit {
+  routes: Array<Object>;
 
-  constructor() { }
+  constructor(private route: RouteService) { }
 
   ngOnInit() {
   }
 
+  searchRoutes(myForm){
+    console.log(myForm.value)
+    this.route.list(myForm.value).subscribe((routes:Array<Object>) => console.log(routes) );
+  }
+
+  remove(id){
+    this.route.remove(id).subscribe();
+  }
 }

@@ -1,3 +1,16 @@
-<p>
-  route works!
-</p>
+<h1> search for routes </h1>
+<form (ngSubmit)="searchRoutes(myForm)" #myForm="ngForm">
+  <label> From </label>
+  <input type="text" [(ngModel)]="from" name="from"/>
+  <label> To </label>
+  <input type="text" [(ngModel)]="to" name="to"/>
+  <label> Date </label>
+  <input type="date" [(ngModel)]="date" name="date"/>
+
+  <button type="submit"> search </button>
+</form>
+
+<div *ngFor="let route of routes">
+  <p>{{route.from}}</p>
+<button type="button" name="button" (click)="remove(route._id)">remove route</button>
+</div>

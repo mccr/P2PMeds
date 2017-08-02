@@ -39,7 +39,6 @@ module.exports = {
 
           Rating.stars = req.body.stars ? req.body.stars : Rating.stars;
     			Rating.comment = req.body.comment ? req.body.comment : Rating.comment;
-    			Rating.creator_id = req.body.creator_id ? req.body.creator_id : Rating.creator_id;
 
           Rating.save()
           .then( Rating => res.json(Rating))

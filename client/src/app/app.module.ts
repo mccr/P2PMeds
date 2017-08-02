@@ -15,6 +15,8 @@ import { UserComponent } from './user/user.component';
 import { RouteComponent } from './route/route.component';
 import { SignupComponent } from './signup/signup.component';
 import { RouteDetailComponent } from './route-detail/route-detail.component';
+import { RouteNewComponent } from './route-new/route-new.component';
+import { RouteUpdateComponent } from './route-update/route-update.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { RouteDetailComponent } from './route-detail/route-detail.component';
     UserComponent,
     RouteComponent,
     SignupComponent,
-    RouteDetailComponent
+    RouteDetailComponent,
+    RouteNewComponent,
+    RouteUpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +36,7 @@ import { RouteDetailComponent } from './route-detail/route-detail.component';
     FormsModule
   ],
   providers: [
+    RouteService,
     SessionService,
     { provide: 'BASE_ENDPOINT', useValue: environment.baseEndpoint },
     { provide: 'API_ENDPOINT', useValue: environment.apiEndpoint }

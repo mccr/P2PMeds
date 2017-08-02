@@ -3,10 +3,11 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Rx';
+import { User } from './interfaces';
 
 @Injectable()
 export class SessionFBService {
-  user: Object; // The current logged in user
+  user: User; // The current logged in user
   startLoginCompleted:boolean = false;
   endpoint: string;
   options:object = {withCredentials:true};
@@ -17,7 +18,7 @@ export class SessionFBService {
     @Inject('API_ENDPOINT') private API
   ) {
     this.endpoint = BASE + API;
-    this.isLoggedIn().subscribe( (user:Object) =>{
+    this.isLoggedIn().subscribe( (user:User) =>{
       console.log(`Welcome again user ${user.username}`)
       this.user = user;
       this.startLoginCompleted = true;
@@ -30,7 +31,7 @@ export class SessionFBService {
     return Observable.throw(e.json().message);
   }
 
-  login():Observable<Object> {
+  login():Observable<User> {
     return this.http.get(`${this.endpoint}/facebook`, this.options)
       .map(res => {
         this.user = res.json();
@@ -48,7 +49,7 @@ export class SessionFBService {
       .catch(this.handleError);
   }
 
-  isLoggedIn():Observable<Object>{
+  isLoggedIn():Observable<User>{
     return this.http.get(`${this.endpoint}/loggedin`, this.options)
       .map(res => {
         this.user = res.json();

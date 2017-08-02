@@ -4,7 +4,8 @@ var Schema   = mongoose.Schema;
 var RatingSchema = new Schema({
 	'stars' : Number,
 	'comment' : String,
-	'creator_id' : String
+	'rated_id': { type: Schema.Types.ObjectId, ref: 'User', required: true },
+	'creator_id' : { type: Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
 module.exports = mongoose.model('Rating', RatingSchema);

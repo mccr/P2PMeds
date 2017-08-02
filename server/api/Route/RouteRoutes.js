@@ -5,7 +5,7 @@ var RouteController = require('./RouteController.js');
 /*
  * GET
  */
-router.get('/', RouteController.list);
+router.get('/list', RouteController.list);
 
 /*
  * GET

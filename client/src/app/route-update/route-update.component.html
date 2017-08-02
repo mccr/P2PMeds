@@ -1,0 +1,12 @@
+<h1> Edit Route </h1>
+<form (ngSubmit)="editRoute(myForm)" #myForm="ngForm">
+  <label> From </label>
+  <input type="text" [(ngModel)]="from" name="from"/>
+  <label> To </label>
+  <input type="text" [(ngModel)]="to" name="to"/>
+  <label> Date </label>
+  <input type="date" [(ngModel)]="date" name="date"/>
+
+  <button type="submit"> Edit route </button>
+</form>
+<p class="error"> {{ error }} </p>
