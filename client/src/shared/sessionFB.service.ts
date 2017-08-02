@@ -3,11 +3,10 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Rx';
-import { User } from './interfaces';
 
 @Injectable()
-export class SessionService {
-  user: User;
+export class SessionFBService {
+  user: Object; // The current logged in user
   startLoginCompleted:boolean = false;
   endpoint: string;
   options:object = {withCredentials:true};
@@ -18,27 +17,21 @@ export class SessionService {
     @Inject('API_ENDPOINT') private API
   ) {
     this.endpoint = BASE + API;
-    this.isLoggedIn().subscribe( (user:User) =>{
+    this.isLoggedIn().subscribe( (user:Object) =>{
       console.log(`Welcome again user ${user.username}`)
       this.user = user;
       this.startLoginCompleted = true;
     }, e => this.startLoginCompleted = true);
   }
 
+
   handleError(e) {
     console.error("Error en la llamada a la API");
     return Observable.throw(e.json().message);
   }
 
-  signup(user:User):Observable<User> {
-    return this.http.post(`${this.endpoint}/signup`, user, this.options)
-      .map(res => res.json())
-      .catch(this.handleError);
-  }
-
-  login(username:string, password:string):Observable<User> {
-    console.log(username, password)
-    return this.http.post(`${this.endpoint}/login`, {username,password}, this.options)
+  login():Observable<Object> {
+    return this.http.get(`${this.endpoint}/facebook`, this.options)
       .map(res => {
         this.user = res.json();
         return this.user;
@@ -46,7 +39,7 @@ export class SessionService {
       .catch(this.handleError);
   }
 
-  logout():Observable<object>{
+  logout():Observable<Object>{
     return this.http.get(`${this.endpoint}/logout`, this.options)
       .map(res => {
         res.json();
@@ -55,7 +48,7 @@ export class SessionService {
       .catch(this.handleError);
   }
 
-  isLoggedIn():Observable<User>{
+  isLoggedIn():Observable<Object>{
     return this.http.get(`${this.endpoint}/loggedin`, this.options)
       .map(res => {
         this.user = res.json();

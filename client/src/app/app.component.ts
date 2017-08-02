@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SessionService } from '../shared/session.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,11 @@ import { SessionService } from '../shared/session.service';
 })
 export class AppComponent {
 
-  constructor(private session: SessionService) { }
+  constructor (private session: SessionService, private router: Router) { }
 
   logout(){
     this.session.logout().subscribe();
+    this.router.navigate(['/'])
   }
+
 }

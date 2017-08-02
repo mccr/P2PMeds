@@ -34,14 +34,20 @@ export class RouteService {
       .catch(this.handleError);
   }
 
-  create(id:string):Observable<object> {
-    return this.http.put(`${this.endpoint}/${id}`, {email: email},this.options)
+  create(Route):Observable<object> {
+    return this.http.post(`${this.endpoint}/`, Route, this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }
 
-  update(id:string, email:string):Observable<object> {
-    return this.http.put(`${this.endpoint}/${id}`, {email: email},this.options)
+  update(id:string, Route):Observable<object> {
+    return this.http.put(`${this.endpoint}/${id}`, Route, this.options)
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
+  remove(id:string):Observable<object> {
+    return this.http.delete(`${this.endpoint}/${id}`, this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }

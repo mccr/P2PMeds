@@ -12,4 +12,4 @@ passport.deserializeUser((id, cb) => {
   });
 });
 
-require('./facebook');
+require('./local')(passport);

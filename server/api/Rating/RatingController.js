@@ -41,13 +41,18 @@ module.exports = {
     			Rating.comment = req.body.comment ? req.body.comment : Rating.comment;
     			Rating.creator_id = req.body.creator_id ? req.body.creator_id : Rating.creator_id;
 
-          return Rating;
+          Rating.save()
+          .then( Rating => res.json(Rating))
+          .catch( err => {
+            return res.status(500).json({
+                message: 'Error when updating Rating.',
+                error: err
+            });
+          });
         })
-        .save()
-        .then( Rating => res.json(Rating))
         .catch( err => {
           return res.status(500).json({
-              message: 'Error when updating Rating.',
+              message: 'Error when finding Rating.',
               error: err
           });
         });

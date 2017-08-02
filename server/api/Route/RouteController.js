@@ -79,12 +79,18 @@ module.exports = {
     			Route.date = req.body.date ? req.body.date : Route.date;
     			Route.sendEvent = req.body.sendEvent ? req.body.sendEvent : Route.sendEvent;
 
-          return Route;
-        }).save()
-        .then(Route => res.json(Route))
+          Route.save()
+          .then(Route => res.json(Route))
+          .catch( err => {
+            return res.status(500).json({
+                message: 'Error when updating Route.',
+                error: err
+            });
+          });
+        })
         .catch( err => {
           return res.status(500).json({
-              message: 'Error when updating Route.',
+              message: 'Error when finding Route.',
               error: err
           });
         });

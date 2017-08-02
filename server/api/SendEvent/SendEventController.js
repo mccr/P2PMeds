@@ -38,13 +38,18 @@ module.exports = {
 
 			SendEvent.status = req.body.status ? req.body.status : SendEvent.status;
 
-            return SendEvent;
+            SendEvent.save()
+            .then(SendEvent => res.json(SendEvent))
+            .catch( err => {
+              return res.status(500).json({
+                  message: 'Error when updating SendEvent.',
+                  error: err
+              });
+            });
         })
-        .save()
-        .then(SendEvent => res.json(SendEvent))
         .catch( err => {
           return res.status(500).json({
-              message: 'Error when updating SendEvent.',
+              message: 'Error when finding SendEvent.',
               error: err
           });
         });

@@ -1,23 +1,35 @@
 import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { routes } from './routes';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
 import { SessionService } from '../shared/session.service';
+import { RouteService } from '../shared/route.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
 import { RouteComponent } from './route/route.component';
+import { SignupComponent } from './signup/signup.component';
+import { RouteDetailComponent } from './route-detail/route-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     UserComponent,
-    RouteComponent
+    RouteComponent,
+    SignupComponent,
+    RouteDetailComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(routes),
+    HttpModule,
+    FormsModule
   ],
   providers: [
     SessionService,
