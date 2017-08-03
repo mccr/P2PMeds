@@ -11,6 +11,9 @@
 </form>
 
 <div *ngFor="let route of routes">
-  <p>{{route.from}}</p>
-<button type="button" name="button" (click)="remove(route._id)">remove route</button>
+  <p>from: {{route.from}}</p>
+  <p>to: {{route.to}}</p>
+  <p>Date:{{route.date | date:'shortDate'}}</p>
+  <p>Creator:{{route.creator_id}}</p>
+  <button type="button" name="button" (click)="newPetition(route._id)">make a petition</button>
 </div>

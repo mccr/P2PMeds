@@ -3,10 +3,10 @@ var Schema   = mongoose.Schema;
 
 var SendEventSchema = new Schema({
 	'route_id': { type: Schema.Types.ObjectId, ref: 'Route', required: true },
-	'creator_id' : { type: Schema.Types.ObjectId, ref: 'User', required: true },
+	'requestUser' : { type: Schema.Types.ObjectId, ref: 'User', required: true },
 	'status' : {
         type: String,
-        enum: ['pending confirmation', 'received', 'in transit', 'out for delivery', 'delivered', 'cancel'],
+        enum: ['pending confirmation', 'confirmed', 'received', 'in transit', 'out for delivery', 'delivered', 'rejected'],
         required: true
         }
 });

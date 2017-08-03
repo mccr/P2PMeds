@@ -16,7 +16,7 @@ export class RouteDetailComponent implements OnInit {
 
   constructor(private RouteService: RouteService, private routeActv:ActivatedRoute, private router: Router) {
     routeActv.params
-    .mergeMap( p => RouteService.show(p.id) )
+    .mergeMap( p => RouteService.show(p.id))
     .subscribe( (route:Object) => {
       console.log(route);
       this.route = route;

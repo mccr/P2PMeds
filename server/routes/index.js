@@ -5,7 +5,7 @@ module.exports = function(app) {
   app.use('/api/', require('../api/passport/authLocal'));
   app.use('/api/rating', require('../api/Rating/RatingRoutes'));
   app.use('/api/route', require('../api/Route/RouteRoutes'));
-  app.use('/api/send', require('../api/SendEvent/SendEventRoutes'));
+  app.use('/api/petition', require('../api/SendEvent/SendEventRoutes'));
   app.use('/api/user', require('../api/User/UserRoutes'));
 
 	// catch 404 and forward to Angular

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouteService } from '../../shared/route.service';
+import { PetitionService } from '../../shared/petition.service';
 
 
 @Component({
@@ -10,17 +11,18 @@ import { RouteService } from '../../shared/route.service';
 export class RouteComponent implements OnInit {
   routes: Array<Object>;
 
-  constructor(private route: RouteService) { }
+  constructor(private route: RouteService, private petition: PetitionService) { }
 
   ngOnInit() {
   }
 
   searchRoutes(myForm){
     console.log(myForm.value)
-    this.route.list(myForm.value).subscribe((routes:Array<Object>) => console.log(routes) );
+    this.route.list(myForm.value).subscribe((routes:Array<Object>) => this.routes = routes );
   }
 
-  remove(id){
-    this.route.remove(id).subscribe();
+  newPetition(routeID){
+    console.log(routeID)
+    this.petition.create(routeID).subscribe(petition => console.log(petition))
   }
 }

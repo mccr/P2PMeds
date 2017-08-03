@@ -19,3 +19,32 @@
   </form>
   <p class="error"> {{ error }} </p>
 </div>
+
+<div *ngIf="routesCreated">
+  <h1>My Routes</h1>
+  <div *ngFor="let route of routesCreated">
+    <p>From: {{route.route_id.from}}</p>
+    <p>To:{{route.route_id.to}}</p>
+    <p>Date:{{route.route_id.date | date:'shortDate'}}</p>
+    <h2>Petition:</h2>
+    <p>status: {{route.status}}
+      <button *ngIf="route.status == 'pending confirmation'" type="button" name="button" (click)="confirm(route._id)">confirm</button>
+      <button *ngIf="route.status == 'pending confirmation'" type="button" name="button" (click)="reject(route._id)">Reject</button>
+    </p>
+    <p>request by: {{route.requestUser.username}}</p>
+    <button type="button" name="button" (click)="remove(route._id)">delete route</button>
+    <button type="button" name="button" (click)="showForm()">EDIT</button>
+  </div>
+</div>
+
+<div *ngIf="petitionsMade">
+  <h1>My Petitions</h1>
+  <div *ngFor="let petition of petitionsMade">
+    <p>From: {{petition.route_id.from}}</p>
+    <p>To:{{petition.route_id.to}}</p>
+    <p>Date:{{petition.route_id.date | date:'shortDate'}}</p>
+    <p>creator: {{petition.creator_id.username}}</p>
+    <h2>Petition:</h2>
+    <p>status: {{petition.status}}</p>
+  </div>
+</div>

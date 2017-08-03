@@ -1,4 +1,6 @@
-var UserModel = require('./UserModel.js');
+var UserModel = require('./UserModel.js'),
+    RouteModel = require('../Route/RouteModel.js'),
+    SendEventModel = require('../SendEvent/SendEventModel.js');
 
 /**
  * UserController.js
@@ -15,8 +17,53 @@ module.exports = {
       .exec()
       .then(User => {
         if (!User) return res.status(404).json({message: 'No such User'});
-        return res.json(User);
-      })
+        RouteModel.find({creator_id: User._id})
+        .exec()
+        .then(routes => {
+          routePetitions = routes.map( r => {
+            return new Promise((resolve, reject) => {
+              SendEventModel.find({route_id: r._id})
+              .exec()
+              .then( petitions => {
+                  resolve(petitions);
+              });
+            });
+          });
+          Promise.all(routePetitions).then(data => {
+            var merged = [].concat.apply([], data);
+            petitionsPromises = merged.map(p => {
+              return new Promise((resolve, reject) => {
+                  p.populate('requestUser route_id', (err, petition) => {
+                    resolve(petition);
+                  });
+              });
+            });
+          });
+          Promise.all(petitionsPromises).then(createData => {
+            SendEventModel.find({requestUser: User._id})
+            .exec()
+            .then( petitions => {
+              petitionMade = petitions.map( p => {
+                return new Promise((resolve, reject) => {
+                  p.populate('route_id', (err, pet) => {
+                    console.log(pet);
+                    pet.route_id.populate('creator_id', (err, pet2)=>{
+                      pet.route_id = pet2;
+                      console.log(pet2);
+                      resolve(pet2);
+                    });
+                  });
+                });
+            });
+            Promise.all(petitionMade).then(petitionMadeData => {
+              //console.log(petitionMadeData);
+              return res.status(200).json({User: User, createData: createData, petitionData: petitionMadeData});
+            });
+          });
+        });
+
+      });
+    })
       .catch(err => {
         return res.status(500).json({
           message: 'Error when getting User.',

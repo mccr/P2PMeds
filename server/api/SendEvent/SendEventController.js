@@ -12,7 +12,8 @@ module.exports = {
      */
     create: (req, res) => {
         const SendEvent = new SendEventModel({
-    			creator_id : req.body.creator_id,
+          route_id: req.body.route_id,
+    			requestUser : req.user,
     			status : 'pending confirmation'
         });
 

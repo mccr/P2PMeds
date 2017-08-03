@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouteService } from '../../shared/route.service';
 import { Observable } from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-route-new',
@@ -9,13 +10,15 @@ import { Observable } from 'rxjs';
 })
 export class RouteNewComponent implements OnInit {
 
-  constructor(private route: RouteService) { }
+  constructor(private route: RouteService, private router: Router) { }
 
   ngOnInit() {
   }
 
   newRoute(myForm){
     console.log(myForm.value)
-    this.route.create(myForm.value).subscribe((route) => console.log(route) );
+    this.route.create(myForm.value).subscribe((route:Object) => {
+      this.router.navigate(['route', route['_id']])
+    });
   }
 }
