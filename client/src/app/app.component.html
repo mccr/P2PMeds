@@ -5,6 +5,7 @@
 </div>
 <div *ngIf="session.user && session.startLoginCompleted">
   <pre>Welcome user: {{ session.user.username }}</pre>
+  <a [routerLink]="['user', session.user._id]">my profile</a>
   <button (click)="logout()">Logout</button>
 </div>
 <router-outlet></router-outlet>

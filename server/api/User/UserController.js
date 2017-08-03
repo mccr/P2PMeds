@@ -37,8 +37,15 @@ module.exports = {
         User.email = req.body.email ? req.body.email : User.email;
         User.badge = req.body.badge ? req.body.badge : User.badge;
 
-        return User;
-      }).save( User => res.json(User))
+        User.save()
+        .then(userSaved => res.json(userSaved))
+        .catch(err => {
+          return res.status(500).json({
+            message: 'Error when saving User.',
+            error: err
+          });
+        });
+      })
       .catch(err => {
         return res.status(500).json({
           message: 'Error when getting User.',

@@ -13,7 +13,7 @@ export class AppComponent {
 
   logout(){
     this.session.logout().subscribe();
-    this.router.navigate(['/'])
+    this.router.navigate([''])
   }
 
 }

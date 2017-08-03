@@ -22,13 +22,13 @@ export class UserService {
   }
 
   show(id:string):Observable<object> {
-    return this.http.get(`${this.endpoint}/${id}`, this.options)
+    return this.http.get(`${this.endpoint}/user/${id}`, this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }
 
-  update(id:string, email:string):Observable<object> {
-    return this.http.put(`${this.endpoint}/${id}`, {email: email},this.options)
+  update(id:string, update:Object):Observable<object> {
+    return this.http.put(`${this.endpoint}/user/${id}`, update, this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }

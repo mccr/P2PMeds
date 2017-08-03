@@ -1,3 +1,21 @@
 <p>
   user works!
 </p>
+
+<div *ngIf="user">
+  <p>username: {{user.username}}</p>
+  <p>email: {{user.email}}</p>
+</div>
+<button type="button" name="button" (click)="showForm()">EDIT</button>
+<div *ngIf="show">
+  <h1> Edit Profile </h1>
+  <form (ngSubmit)="update(user._id, myForm)" #myForm="ngForm">
+    <label> email </label>
+    <input type="text" [(ngModel)]="email" name="email"/>
+    <label> Profile Picture </label>
+    <!--input type="text" [(ngModel)]="to" name="to"/-->
+
+    <button type="submit"> Edit Profile </button>
+  </form>
+  <p class="error"> {{ error }} </p>
+</div>
