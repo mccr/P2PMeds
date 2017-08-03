@@ -83,7 +83,7 @@ module.exports = {
 
           Route.from = req.body.from ? req.body.from : Route.from;
     			Route.to = req.body.to ? req.body.to : Route.to;
-    			Route.date = req.body.date ? req.body.date : Route.date;
+    			Route.date = req.body.date ? new Date(req.body.date) : Route.date;
 
           Route.save()
           .then(Route => res.json(Route))

@@ -16,7 +16,6 @@ import { RouteComponent } from './route/route.component';
 import { SignupComponent } from './signup/signup.component';
 import { RouteDetailComponent } from './route-detail/route-detail.component';
 import { RouteNewComponent } from './route-new/route-new.component';
-import { RouteUpdateComponent } from './route-update/route-update.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +25,7 @@ import { RouteUpdateComponent } from './route-update/route-update.component';
     RouteComponent,
     SignupComponent,
     RouteDetailComponent,
-    RouteNewComponent,
-    RouteUpdateComponent
+    RouteNewComponent
   ],
   imports: [
     BrowserModule,

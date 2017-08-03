@@ -34,7 +34,7 @@ export class RouteService {
   }
 
   show(id:string):Observable<object> {
-    return this.http.get(`${this.endpoint}/${id}`, this.options)
+    return this.http.get(`${this.endpoint}/route/${id}`, this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }

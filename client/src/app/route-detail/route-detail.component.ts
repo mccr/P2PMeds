@@ -3,6 +3,7 @@ import { RouteService } from '../../shared/route.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import "rxjs/add/operator/mergeMap";
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-route-detail',
@@ -11,6 +12,7 @@ import "rxjs/add/operator/mergeMap";
 })
 export class RouteDetailComponent implements OnInit {
   route: Object;
+  show: boolean = false;
 
   constructor(private RouteService: RouteService, private routeActv:ActivatedRoute) {
     routeActv.params
@@ -24,4 +26,10 @@ export class RouteDetailComponent implements OnInit {
   ngOnInit() {
   }
 
+  showForm(){
+    this.show = !this.show;
+  }
+  editRoute(id, myForm){
+    this.RouteService.update(id, myForm.value).subscribe((route) => console.log(route) );
+  }
 }
