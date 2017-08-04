@@ -5,7 +5,7 @@
   <p>From: {{route.from}}</p>
   <p>To:{{route.to}}</p>
   <p>Date:{{route.date | date:'shortDate'}}</p>
-  <p>Creator:hacer populate de usuario</p>
+  <p>Creator: {{route.creator_id}}</p>
   <button type="button" name="button" (click)="remove(route._id)">delete route</button>
   <button type="button" name="button" (click)="showForm()">EDIT</button>
   <div *ngIf="show">

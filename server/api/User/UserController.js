@@ -46,7 +46,7 @@ module.exports = {
               petitionMade = petitions.map( p => {
                 return new Promise((resolve, reject) => {
                   p.populate('route_id', (err, pet) => {
-                    console.log(pet);
+                    //console.log(pet);
                     // pet.route_id.populate('creator_id', (err, pet2)=>{
                     //   pet.route_id = pet2;
                     //   console.log(pet2);
@@ -57,8 +57,7 @@ module.exports = {
                 });
             });
             Promise.all(petitionMade).then(petitionMadeData => {
-              //console.log(petitionMadeData);
-              return res.status(200).json({User: User, createData: createData, petitionData: petitionMadeData});
+                return res.status(200).json({User: User, routes:routes, createData: createData, petitionData: petitionMadeData});
             });
           });
         });

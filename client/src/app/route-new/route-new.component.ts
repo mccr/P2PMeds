@@ -18,7 +18,7 @@ export class RouteNewComponent implements OnInit {
   newRoute(myForm){
     console.log(myForm.value)
     this.route.create(myForm.value).subscribe((route:Object) => {
-      this.router.navigate(['route', route['_id']])
+      this.router.navigate(['user', route['creator_id']['_id']])
     });
   }
 }

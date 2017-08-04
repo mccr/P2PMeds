@@ -14,9 +14,9 @@ module.exports = {
         const SendEvent = new SendEventModel({
           route_id: req.body.route_id,
     			requestUser : req.user,
-    			status : 'pending confirmation'
+    			status : 'Pending Confirmation'
         });
-
+        console.log(SendEvent);
         SendEvent.save()
         .then( SendEvent => res.status(201).json(SendEvent))
         .catch( err => {
@@ -31,16 +31,13 @@ module.exports = {
      * SendEventController.update()
      */
     update: (req, res) => {
-        const id = req.params.id;
-        SendEventModel.update({_id: id}, {$set: {status: req.body.status}})
+      console.log(req.body.status);
+        SendEventModel.update({_id: req.params.id}, {$set: {status: req.body.status}})
         .exec()
-        .then( SendEvent => {
-          if (!SendEvent) res.status(404).json({message: 'No such SendEvent'});
-          res.status(200).json(SendEvent);
-        })
+        .then( response => res.json(response))
         .catch( err => {
           return res.status(500).json({
-              message: 'Error when finding SendEvent.',
+              message: 'Error when updating status of sendEvent.',
               error: err
           });
         });
