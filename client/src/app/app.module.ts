@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { SessionService } from '../shared/session.service';
 import { RouteService } from '../shared/route.service';
 import { PetitionService } from '../shared/petition.service';
+import { RatingService } from '../shared/rating.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -35,6 +36,7 @@ import { RouteNewComponent } from './route-new/route-new.component';
     FormsModule
   ],
   providers: [
+    RatingService,
     PetitionService,
     RouteService,
     SessionService,

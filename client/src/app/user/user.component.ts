@@ -3,6 +3,7 @@ import { UserService } from '../../shared/user.service';
 import { SessionService } from '../../shared/session.service';
 import { PetitionService } from '../../shared/petition.service';
 import { RouteService } from '../../shared/route.service';
+import { RatingService } from '../../shared/rating.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import "rxjs/add/operator/mergeMap";
 
@@ -18,7 +19,8 @@ export class UserComponent implements OnInit {
   petitionsMade:Array<Object>;
   routesWithPetitions:Array<Object>;
   show:boolean = false;
-  showEditRoute:boolean = false;
+  showEditRoute:string = "";
+  showRateForm:string = "";
 
   constructor(
     private router: Router,
@@ -26,7 +28,8 @@ export class UserComponent implements OnInit {
     private UserService: UserService,
     private routeActv:ActivatedRoute,
     private petition: PetitionService,
-    private RouteService: RouteService
+    private RouteService: RouteService,
+    private RatingService: RatingService
     ) {
     routeActv.params
     .mergeMap( p => UserService.show(p.id) )
@@ -51,11 +54,15 @@ export class UserComponent implements OnInit {
     this.show = !this.show;
   }
 
-  showEditRouteForm(){
-    this.showEditRoute = !this.showEditRoute;
+  showEditRouteForm(e){
+    if(this.showEditRoute == e.target.value){
+      this.showEditRoute = "";
+    } else {
+      this.showEditRoute = e.target.value;
+    }
   }
-  editRoute(id, myForm){
-    this.RouteService.update(id, myForm.value).subscribe((route) => console.log(route));
+  editRoute(id, myEditRouteForm){
+    this.RouteService.update(id, myEditRouteForm.value).subscribe((route) => console.log(route));
   }
 
   remove(id){
@@ -81,5 +88,16 @@ export class UserComponent implements OnInit {
         }
       }
     });
+  }
+
+  showFormRateUser(e){
+    if(this.showRateForm == e.target.value){
+      this.showRateForm = "";
+    } else {
+      this.showRateForm = e.target.value;
+    }
+  }
+  rateUser(ratedUser_id, myRateForm){
+    this.RatingService.create(ratedUser_id, myRateForm.value).subscribe( rating => console.log(rating))
   }
 }

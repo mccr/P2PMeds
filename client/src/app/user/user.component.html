@@ -44,16 +44,16 @@
       </div>
       <div *ngIf="session.user._id == route.creator_id">
       <button type="button" name="button" (click)="remove(route._id)">delete route</button>
-      <button type="button" name="button" (click)="showEditRouteForm()">EDIT</button>
-      <div *ngIf="showEditRoute">
+      <button type="button" name="button" (click)="showEditRouteForm($event)" value="{{route._id}}">EDIT</button>
+      <div *ngIf="showEditRoute == route._id">
         <h1> Edit Route </h1>
-        <form (ngSubmit)="editRoute(route._id, myForm)" #myForm="ngForm">
+        <form (ngSubmit)="editRoute(route._id, myEditRouteForm)" #myEditRouteForm="ngForm">
           <label> From </label>
-          <input type="text" [(ngModel)]="from" name="from"/>
+          <input type="text" [(ngModel)]="from" name="from" value="{{route.from}}"/>
           <label> To </label>
-          <input type="text" [(ngModel)]="to" name="to"/>
+          <input type="text" [(ngModel)]="to" name="to" value="route.to"/>
           <label> Date </label>
-          <input type="date" [(ngModel)]="date" name="date"/>
+          <input type="date" [(ngModel)]="date" name="date" value="route.date"/>
 
           <button type="submit"> Edit route </button>
         </form>
@@ -72,5 +72,17 @@
     <h4>Petition:</h4>
     <p>status: {{petition.status}}</p>
     <button *ngIf="session.user._id == petition.requestUser && petition.status == 'Confirmed'" type="button" name="button" (click)="setStatus(petition._id, $event)" value="Delivered to Carrier">Delivered to Carrier</button>
+    <button *ngIf="session.user._id == petition.requestUser && petition.status == 'Delivered'" type="button" name="button" (click)="showFormRateUser($event)" value="{{petition._id}}">Rate {{petition.route_id.creator_id}}</button>
+    <div *ngIf="showRateForm == petition._id">
+      <h1> Rate {{petition.route_id.creator_id}} </h1>
+      <form (ngSubmit)="rateUser(petition.route_id.creator_id, myRateForm)" #myRateForm="ngForm">
+        <label> Stars </label>
+        <input type="text" [(ngModel)]="stars" name="stars"/>
+        <label> comment </label>
+        <textarea name="comment" [(ngModel)]="comment"></textarea>
+
+        <button type="submit"> Add Rating </button>
+      </form>
+  </div>
   </div>
 </div>

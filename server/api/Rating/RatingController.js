@@ -14,7 +14,8 @@ module.exports = {
       const Rating = new RatingModel({
   			stars : req.body.stars,
   			comment : req.body.comment,
-  			creator_id : req.body.creator_id
+        ratedUser_id : req.body.ratedUser_id,
+  			user_id : req.user
         });
 
         Rating.save()

@@ -46,12 +46,7 @@ module.exports = {
               petitionMade = petitions.map( p => {
                 return new Promise((resolve, reject) => {
                   p.populate('route_id', (err, pet) => {
-                    //console.log(pet);
-                    // pet.route_id.populate('creator_id', (err, pet2)=>{
-                    //   pet.route_id = pet2;
-                    //   console.log(pet2);
-                    //
-                    // });
+                    console.log(pet);
                     resolve(pet);
                   });
                 });
@@ -61,7 +56,6 @@ module.exports = {
             });
           });
         });
-
       });
     })
       .catch(err => {
