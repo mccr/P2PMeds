@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../shared/user.service';
 import { SessionService } from '../../shared/session.service';
 import { PetitionService } from '../../shared/petition.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import "rxjs/add/operator/mergeMap";
 
 @Component({
@@ -19,7 +19,8 @@ export class UserComponent implements OnInit {
   show: boolean = false;
 
   constructor(
-    private SessionService: SessionService,
+    private router: Router,
+    private session: SessionService,
     private UserService: UserService,
     private routeActv:ActivatedRoute,
     private petition: PetitionService
@@ -46,12 +47,9 @@ export class UserComponent implements OnInit {
     this.show = !this.show;
   }
 
-  confirm(id){
-    console.log(id)
-    this.petition.update(id, 'confirmed').subscribe( petition => console.log(petition));
-  }
-
-  reject(id){
-    this.petition.update(id, 'rejected').subscribe( petition => console.log(petition));
+  setStatus(id, event){
+    this.petition.update(id, event.target.value).subscribe( (petition:any) => {
+      if(petition.n == 1) this.petitionsMade.filter((e:any) => e._id == id)[0]['status'] = event.target.value;
+    });
   }
 }

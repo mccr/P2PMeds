@@ -32,21 +32,11 @@ module.exports = {
      */
     update: (req, res) => {
         const id = req.params.id;
-        SendEventModel.findOne({_id: id})
+        SendEventModel.update({_id: id}, {$set: {status: req.body.status}})
         .exec()
         .then( SendEvent => {
           if (!SendEvent) res.status(404).json({message: 'No such SendEvent'});
-
-			SendEvent.status = req.body.status ? req.body.status : SendEvent.status;
-
-            SendEvent.save()
-            .then(SendEvent => res.json(SendEvent))
-            .catch( err => {
-              return res.status(500).json({
-                  message: 'Error when updating SendEvent.',
-                  error: err
-              });
-            });
+          res.status(200).json(SendEvent);
         })
         .catch( err => {
           return res.status(500).json({

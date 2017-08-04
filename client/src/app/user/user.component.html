@@ -5,8 +5,8 @@
 <div *ngIf="user">
   <p>username: {{user.username}}</p>
   <p>email: {{user.email}}</p>
+  <button *ngIf="user._id == session.user._id" type="button" name="button" (click)="showForm()">EDIT</button>
 </div>
-<button type="button" name="button" (click)="showForm()">EDIT</button>
 <div *ngIf="show">
   <h1> Edit Profile </h1>
   <form (ngSubmit)="update(user._id, myForm)" #myForm="ngForm">
@@ -23,28 +23,36 @@
 <div *ngIf="routesCreated">
   <h1>My Routes</h1>
   <div *ngFor="let route of routesCreated">
+    <h4>Route:</h4>
     <p>From: {{route.route_id.from}}</p>
     <p>To:{{route.route_id.to}}</p>
     <p>Date:{{route.route_id.date | date:'shortDate'}}</p>
-    <h2>Petition:</h2>
-    <p>status: {{route.status}}
-      <button *ngIf="route.status == 'pending confirmation'" type="button" name="button" (click)="confirm(route._id)">confirm</button>
-      <button *ngIf="route.status == 'pending confirmation'" type="button" name="button" (click)="reject(route._id)">Reject</button>
-    </p>
-    <p>request by: {{route.requestUser.username}}</p>
-    <button type="button" name="button" (click)="remove(route._id)">delete route</button>
-    <button type="button" name="button" (click)="showForm()">EDIT</button>
+    <h4>Petition:</h4>
+    <p>status: {{route.status}}</p>
+      <div *ngIf="session.user._id == route.route_id.creator_id">
+        <button *ngIf="route.status == 'pending confirmation'" type="button" name="button" (click)="setStatus(route._id)" value="confirmed">confirm</button>
+        <button *ngIf="route.status == 'pending confirmation'" type="button" name="button" (click)="setStatus(route._id)" value="reject">Reject</button>
+        <button *ngIf="route.status == 'in transit'" type="button" name="button" (click)="setStatus(route._id)" value="in transit">in transit</button>
+        <button *ngIf="route.status == 'delivered'" type="button" name="button" (click)="setStatus(route._id)" value="delivered">delivered</button>
+      </div>
+    <p>request by: <a [routerLink]="['/user', route.requestUser._id]">{{route.requestUser.username}}</a></p>
+    <div *ngIf="session.user == route.creator_id">
+      <button type="button" name="button" (click)="remove(route._id)">delete route</button>
+      <button type="button" name="button" (click)="showForm()">EDIT</button>
+    </div>
   </div>
 </div>
 
 <div *ngIf="petitionsMade">
   <h1>My Petitions</h1>
   <div *ngFor="let petition of petitionsMade">
+    <h4>Route:</h4>
     <p>From: {{petition.route_id.from}}</p>
     <p>To:{{petition.route_id.to}}</p>
     <p>Date:{{petition.route_id.date | date:'shortDate'}}</p>
-    <p>creator: {{petition.creator_id.username}}</p>
-    <h2>Petition:</h2>
+    <p>creator: {{petition.route_id.creator_id}}</p>
+    <h4>Petition:</h4>
     <p>status: {{petition.status}}</p>
+    <button *ngIf="session.user._id == petition.requestUser && petition.status == 'confirmed'" type="button" name="button" (click)="setStatus(petition._id, $event)" value="delivered to carrier">Delivered to Carrier</button>
   </div>
 </div>

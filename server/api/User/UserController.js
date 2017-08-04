@@ -47,11 +47,12 @@ module.exports = {
                 return new Promise((resolve, reject) => {
                   p.populate('route_id', (err, pet) => {
                     console.log(pet);
-                    pet.route_id.populate('creator_id', (err, pet2)=>{
-                      pet.route_id = pet2;
-                      console.log(pet2);
-                      resolve(pet2);
-                    });
+                    // pet.route_id.populate('creator_id', (err, pet2)=>{
+                    //   pet.route_id = pet2;
+                    //   console.log(pet2);
+                    //
+                    // });
+                    resolve(pet);
                   });
                 });
             });

@@ -6,7 +6,7 @@ var SendEventSchema = new Schema({
 	'requestUser' : { type: Schema.Types.ObjectId, ref: 'User', required: true },
 	'status' : {
         type: String,
-        enum: ['pending confirmation', 'confirmed', 'received', 'in transit', 'out for delivery', 'delivered', 'rejected'],
+        enum: ['pending confirmation', 'confirmed', 'Delivered to Carrier', 'in transit', 'delivered', 'rejected'],
         required: true
         }
 });
