@@ -5,6 +5,7 @@ import { PetitionService } from '../../shared/petition.service';
 import { RouteService } from '../../shared/route.service';
 import { RatingService } from '../../shared/rating.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import "rxjs/add/operator/mergeMap";
 
 @Component({

@@ -6,7 +6,7 @@ import { PetitionService } from '../../shared/petition.service';
 @Component({
   selector: 'app-route',
   templateUrl: './route.component.html',
-  styleUrls: ['./route.component.css']
+  styleUrls: ['./route.component.min.css']
 })
 export class RouteComponent implements OnInit {
   routes: Array<Object>;

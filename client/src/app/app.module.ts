@@ -1,10 +1,47 @@
 import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { routes } from './routes';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AsyncPipe } from '@angular/common';
+import {
+  MaterialModule,
+  MdAutocompleteModule,
+  MdButtonModule,
+  MdButtonToggleModule,
+  MdCardModule,
+  MdCheckboxModule,
+  MdChipsModule,
+  MdCoreModule,
+  MdDatepickerModule,
+  MdDialogModule,
+  MdExpansionModule,
+  MdGridListModule,
+  MdIconModule,
+  MdInputModule,
+  MdListModule,
+  MdMenuModule,
+  MdNativeDateModule,
+  MdPaginatorModule,
+  MdProgressBarModule,
+  MdProgressSpinnerModule,
+  MdRadioModule,
+  MdRippleModule,
+  MdSelectModule,
+  MdSidenavModule,
+  MdSliderModule,
+  MdSlideToggleModule,
+  MdSnackBarModule,
+  MdSortModule,
+  MdTableModule,
+  MdTabsModule,
+  MdToolbarModule,
+  MdTooltipModule,
+} from '@angular/material';
+import {CdkTableModule} from '@angular/cdk';
 
 import { SessionService } from '../shared/session.service';
 import { RouteService } from '../shared/route.service';
@@ -18,6 +55,7 @@ import { RouteComponent } from './route/route.component';
 import { SignupComponent } from './signup/signup.component';
 import { RouteDetailComponent } from './route-detail/route-detail.component';
 import { RouteNewComponent } from './route-new/route-new.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +65,51 @@ import { RouteNewComponent } from './route-new/route-new.component';
     RouteComponent,
     SignupComponent,
     RouteDetailComponent,
-    RouteNewComponent
+    RouteNewComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     HttpModule,
-    FormsModule
+    FormsModule,
+    MaterialModule,
+    MdNativeDateModule,
+    ReactiveFormsModule,
+    CdkTableModule,
+    MdAutocompleteModule,
+    MdButtonModule,
+    MdButtonToggleModule,
+    MdCardModule,
+    MdCheckboxModule,
+    MdChipsModule,
+    MdCoreModule,
+    MdDatepickerModule,
+    MdDialogModule,
+    MdExpansionModule,
+    MdGridListModule,
+    MdIconModule,
+    MdInputModule,
+    MdListModule,
+    MdMenuModule,
+    MdNativeDateModule,
+    MdPaginatorModule,
+    MdProgressBarModule,
+    MdProgressSpinnerModule,
+    MdRadioModule,
+    MdRippleModule,
+    MdSelectModule,
+    MdSidenavModule,
+    MdSliderModule,
+    MdSlideToggleModule,
+    MdSnackBarModule,
+    MdSortModule,
+    MdTableModule,
+    MdTabsModule,
+    MdToolbarModule,
+    MdTooltipModule,
+    MdDatepickerModule
   ],
   providers: [
     RatingService,
@@ -41,7 +117,8 @@ import { RouteNewComponent } from './route-new/route-new.component';
     RouteService,
     SessionService,
     { provide: 'BASE_ENDPOINT', useValue: environment.baseEndpoint },
-    { provide: 'API_ENDPOINT', useValue: environment.apiEndpoint }
+    { provide: 'API_ENDPOINT', useValue: environment.apiEndpoint },
+    // {provide: MD_ERROR_GLOBAL_OPTIONS, useValue: { errorStateMatcher: showOnDirtyErrorStateMatcher }}
   ],
   bootstrap: [AppComponent]
 })

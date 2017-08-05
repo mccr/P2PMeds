@@ -1,0 +1,33 @@
+<md-toolbar class="fixed-header">
+  <a class="mat-button" md-button [routerLink]="['']">
+    <span class="mat-button-wrapper">P2PMeds</span>
+    <div class="mat-button-ripple mat-ripple"></div>
+    <div class="mat-button-focus-overlay"></div>
+  </a>
+  <span *ngIf="session.user && session.startLoginCompleted">
+  <a class="mat-button" md-button [routerLink]="['user', session.user._id]">
+    <span class="mat-button-wrapper">My Profile</span>
+    <div class="mat-button-ripple mat-ripple"></div>
+    <div class="mat-button-focus-overlay"></div>
+  </a>
+  <a class="mat-button" md-button [routerLink]="['route']">
+    <span class="mat-button-wrapper">Create New Route</span>
+    <div class="mat-button-ripple mat-ripple"></div>
+    <div class="mat-button-focus-overlay"></div>
+  </a>
+  </span>
+  <span class="flex-spacer"></span>
+  <span *ngIf="!session.user && session.startLoginCompleted">
+  <a class="mat-button" md-button [routerLink]="['login']">
+    <span class="mat-button-wrapper">Login</span>
+    <div class="mat-button-ripple mat-ripple"></div>
+    <div class="mat-button-focus-overlay"></div>
+  </a>
+  <a class="mat-button" md-button [routerLink]="['signup']">
+    <span class="mat-button-wrapper">Signup</span>
+    <div class="mat-button-ripple mat-ripple"></div>
+    <div class="mat-button-focus-overlay"></div>
+  </a>
+  </span>
+  <a class="mat-button" md-button (click)="logout()">Logout</a>
+</md-toolbar>
