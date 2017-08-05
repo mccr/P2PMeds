@@ -1,17 +1,10 @@
 .flex-container {
   padding: 0;
   margin: 0;
-  -ms-box-orient: horizontal;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -moz-flex;
-  display: -webkit-flex;
   display: flex;
 }
 
 .wrap    {
-  -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
