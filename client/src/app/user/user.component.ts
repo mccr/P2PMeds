@@ -16,8 +16,8 @@ import "rxjs/add/operator/mergeMap";
 })
 export class UserComponent implements OnInit {
   user:Object;
-  routesCreated:Array<Object>;
-  petitionsMade:Array<Object>;
+  routesCreated:Array<Object> = [];
+  petitionsMade:Array<Object> = [];
   routesWithPetitions:Array<Object>;
   show:boolean = false;
   showEditRoute:string = "";

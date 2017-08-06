@@ -17,8 +17,17 @@ export class RouteComponent implements OnInit {
   }
 
   searchRoutes(myForm){
-    console.log(myForm.value)
-    this.route.list(myForm.value).subscribe((routes:Array<Object>) => this.routes = routes );
+    let day: string, month: string, year: string;
+    day = myForm.value.date.getDate();
+    month = (myForm.value.date.getMonth() < 10) ? '0'+(myForm.value.date.getMonth()+1) : (myForm.value.date.getMonth()+1);
+    year = myForm.value.date.getFullYear();
+    let formValue: Object = {
+      from: myForm.value.from,
+      to: myForm.value.to,
+      date: year+'-'+month+'-'+day
+    }
+    console.log(formValue)
+    this.route.list(formValue).subscribe((routes:Array<Object>) => this.routes = routes );
   }
 
   newPetition(routeID){

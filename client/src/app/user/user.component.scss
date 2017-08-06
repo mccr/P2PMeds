@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   display: flex;
+  width: 100%;
 }
 
 .wrap    {
@@ -9,12 +10,32 @@
 }
 
 .flex-item {
-  width: 400px;
+  width: 25%;
   height: 250px;
-  margin: 10px;
+  margin: 5px;
 }
 
 .header-image {
+  width: 100px;
+  height: 100px;
   background-image: url('http://www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-indian-girl.png');
   background-size: cover;
+}
+
+button {
+  text-transform: uppercase;
+}
+
+section {
+  width: 90%;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+header {
+  margin: 90px 50px 50px;
+}
+
+.edit-button {
+  float: right;
 }

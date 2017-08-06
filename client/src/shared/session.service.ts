@@ -31,6 +31,7 @@ export class SessionService {
   }
 
   signup(user:User):Observable<User> {
+    console.log(user)
     return this.http.post(`${this.endpoint}/signup`, user, this.options)
       .map(res => res.json())
       .catch(this.handleError);

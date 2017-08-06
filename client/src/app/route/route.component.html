@@ -1,60 +1,45 @@
-<h1> search for routes </h1>
-<!--form (ngSubmit)="searchRoutes(myForm)" #myForm="ngForm">
-  <label> From </label>
-  <input type="text" [(ngModel)]="from" name="from"/>
-  <label> To </label>
-  <input type="text" [(ngModel)]="to" name="to"/>
-  <label> Date </label>
-  <input type="date" [(ngModel)]="date" name="date"/>
+<header></header>
 
-  <button type="submit"> search </button>
-</form>
+<section>
+  <h1> search for routes </h1>
 
-<div *ngFor="let route of routes">
-  <p>from: {{route.from}}</p>
-  <p>to: {{route.to}}</p>
-  <p>Date:{{route.date | date:'shortDate'}}</p>
-  <p>Creator:{{route.creator_id}}</p>
-  <button type="button" name="button" (click)="newPetition(route._id)">make a petition</button>
-</div-->
-
-<form (ngSubmit)="searchRoutes(myForm)" #myForm="ngForm">
-  <md-input-container>
-    <input mdInput [(ngModel)]="from" placeholder="From" name="from" required>
-    <md-error>This field is required</md-error>
-  </md-input-container>
-  <md-input-container>
-    <input mdInput [(ngModel)]="to" placeholder="To" name="to" required>
-    <md-error>This field is required</md-error>
-  </md-input-container>
-  <input type="date" name="date" [(ngModel)]="date" value="">
-  <!--md-input-container>
-    <input mdInput [(ngModel)]="date" [mdDatepicker]="picker" placeholder="Choose a date" name="date">
-    <button mdSuffix [mdDatepickerToggle]="picker"></button>
-  </md-input-container-->
-  <md-datepicker #picker></md-datepicker>
-  <button type="submit"> search </button>
-</form>
+  <form (ngSubmit)="searchRoutes(myForm)" #myForm="ngForm">
+    <md-input-container>
+      <input mdInput [(ngModel)]="from" placeholder="From" name="from" required>
+      <md-error>This field is required</md-error>
+    </md-input-container>
+    <md-input-container>
+      <input mdInput [(ngModel)]="to" placeholder="To" name="to" required>
+      <md-error>This field is required</md-error>
+    </md-input-container>
+    <md-input-container>
+      <input mdInput [(ngModel)]="date" [mdDatepicker]="picker" placeholder="Choose a date" name="date">
+      <button mdSuffix [mdDatepickerToggle]="picker"></button>
+    </md-input-container>
+    <md-datepicker #picker></md-datepicker>
+    <button md-raised-button type="submit"> search </button>
+  </form>
 
 
-  <div class="flex-container wrap">
-  <md-card class="flex-item" *ngFor="let route of routes">
-    <md-card-header>
-      <div md-card-avatar class="header-image"></div>
-      <md-card-title>creator: {{route.creator_id}}</md-card-title>
-      <md-card-subtitle>BADGES</md-card-subtitle>
-      <md-card-subtitle><i>star icon</i><a>promedio de rating</a></md-card-subtitle>
-      <md-card-subtitle><a>total de opiniones</a></md-card-subtitle>
-    </md-card-header>
-    <md-card-content>
-      <p>Date: {{route.date | date:'shortDate'}}</p>
-      <p>From: {{route.from}}
-      <i>airplane icon</i>
-      To: {{route.to}}</p>
-      <h1>1 Petitions</h1>
-    </md-card-content>
-    <md-card-actions>
-      <md-button-toggle (click)="newPetition(route._id)">make a petition</md-button-toggle>
-    </md-card-actions>
-  </md-card>
-</div>
+    <div class="flex-container wrap">
+    <md-card class="flex-item" *ngFor="let route of routes">
+      <md-card-header>
+        <div md-card-avatar class="header-image"></div>
+        <md-card-title>creator: {{route.creator_id}}</md-card-title>
+        <md-card-subtitle>BADGES</md-card-subtitle>
+        <md-card-subtitle><i>star icon</i><a>promedio de rating</a></md-card-subtitle>
+        <md-card-subtitle><a>total de opiniones</a></md-card-subtitle>
+      </md-card-header>
+      <md-card-content>
+        <p>Date: {{route.date | date:'shortDate'}}</p>
+        <p>From: {{route.from}}
+        <i>airplane icon</i>
+        To: {{route.to}}</p>
+        <h1>1 Petitions</h1>
+      </md-card-content>
+      <md-card-actions>
+        <md-button-toggle (click)="newPetition(route._id)">make a petition</md-button-toggle>
+      </md-card-actions>
+    </md-card>
+  </div>
+</section>

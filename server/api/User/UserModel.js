@@ -3,8 +3,9 @@ const Schema   = mongoose.Schema;
 
 var UserSchema = new Schema({
 	'username' : String,
+	'name': String,
 	'password': String,
-	'profilePic' : String,
+	'profilePic' : {type: String, default: '/images/empty-profile.png'},
 	'email' : String,
 	'badge' : Array
 });

@@ -1,13 +1,26 @@
-
 <h1> Signup </h1>
 <form (ngSubmit)="signup(myForm)" #myForm="ngForm">
-  <label> Username </label>
-  <input type="text" [(ngModel)]="username" name="username"/>
-  <label> email </label>
-  <input type="text" [(ngModel)]="email" name="email"/>
-  <label> Password </label>
-  <input type="password" [(ngModel)]="password" name="password"/>
+  <md-input-container>
+    <input mdInput [(ngModel)]="username" placeholder="Username" name="username" required>
+    <md-error>This field is required</md-error>
+  </md-input-container>
+  <md-input-container>
+    <input mdInput [(ngModel)]="name" placeholder="Name" name="name" required>
+    <md-error>This field is required</md-error>
+  </md-input-container>
+  <md-input-container>
+    <input mdInput [(ngModel)]="lastName" placeholder="Last Name" name="lastName" required>
+    <md-error>This field is required</md-error>
+  </md-input-container>
+  <md-input-container>
+    <input mdInput [(ngModel)]="email" placeholder="Email" name="email" required>
+    <md-error>This field is required</md-error>
+  </md-input-container>
+  <md-input-container>
+    <input mdInput [(ngModel)]="password" placeholder="Password" name="password" type="password" required>
+    <md-error>This field is required</md-error>
+  </md-input-container>
 
-  <button type="submit"> signup </button>
+  <button md-raised-button type="submit"> signup </button>
 </form>
 <p class="error"> {{ error }} </p>

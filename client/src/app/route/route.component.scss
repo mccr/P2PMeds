@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   display: flex;
+  width: 100%;
 }
 
 .wrap    {
@@ -9,11 +10,23 @@
 }
 
 .flex-item {
-  width: 400px;
-  margin: 10px;
+  width: 25%;
+  margin: 5px;
 }
 
 .header-image {
   background-image: url('http://www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-indian-girl.png');
   background-size: cover;
+}
+
+header {
+  background: url('../../assets/hand-shake-picture-blur.jpg');
+  background-size: cover;
+  height: 500px;
+}
+
+section {
+  width: 90%;
+  box-sizing: border-box;
+  margin: 0 auto;
 }

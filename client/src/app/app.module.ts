@@ -53,7 +53,6 @@ import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
 import { RouteComponent } from './route/route.component';
 import { SignupComponent } from './signup/signup.component';
-import { RouteDetailComponent } from './route-detail/route-detail.component';
 import { RouteNewComponent } from './route-new/route-new.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
@@ -64,7 +63,6 @@ import { NavbarComponent } from './navbar/navbar.component';
     UserComponent,
     RouteComponent,
     SignupComponent,
-    RouteDetailComponent,
     RouteNewComponent,
     NavbarComponent
   ],
