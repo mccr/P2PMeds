@@ -1,0 +1,15 @@
+<h2 md-dialog-title>Rate User!</h2>
+<md-dialog-content>
+    <form (ngSubmit)="rateUser(myForm)" #myForm="ngForm">
+    <md-input-container>
+      <input mdInput [(ngModel)]="stars" placeholder="Stars" name="stars">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput [(ngModel)]="comment" placeholder="Comment" name="comment">
+    </md-input-container>
+    </form>
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-raised-button type="submit"> add rating </button>
+</md-dialog-actions>
+<p class="error"> {{ error }} </p>

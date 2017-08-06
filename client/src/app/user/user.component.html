@@ -1,7 +1,7 @@
 <header>
   <div *ngIf="user" class="user-profile">
     <div class="edit-button">
-      <button md-raised-button *ngIf="user._id == session.user._id" (click)="showForm()">EDIT</button>
+      <button md-raised-button *ngIf="user._id == session.user._id" (click)="userEditDialog()">edit</button>
     </div>
       <p>{{user.name}}</p>
       <div class="header-image"></div>
@@ -10,18 +10,6 @@
       <p>Badges: </p>
       <p>promedio de ratings</p>
       <p>nro de opiniones</p>
-  </div>
-  <div *ngIf="show">
-    <h1> Edit Profile </h1>
-    <form (ngSubmit)="update(user._id, myForm)" #myForm="ngForm">
-      <label> email </label>
-      <input type="text" [(ngModel)]="email" name="email"/>
-      <label> Profile Picture </label>
-      <!--input type="text" [(ngModel)]="to" name="to"/-->
-
-      <button md-raised-button type="submit"> Edit Profile </button>
-    </form>
-    <p class="error"> {{ error }} </p>
   </div>
 </header>
 <section>
@@ -42,10 +30,10 @@
                 <h4>Petition:</h4>
                 <p>status: {{petition.status}}</p>
                   <div *ngIf="session.user._id == petition.route_id.creator_id">
-                    <button md-raised-button *ngIf="petition.status == 'Pending Confirmation'" (click)="setStatus(petition._id, $event)" value="Confirmed">Confirm</button>
-                    <button md-raised-button *ngIf="petition.status == 'Pending Confirmation'" (click)="setStatus(petition._id, $event)" value="Rejected">Reject</button>
-                    <button md-raised-button *ngIf="petition.status == 'Delivered to Carrier'" (click)="setStatus(petition._id, $event)" value="In Transit">In Transit</button>
-                    <button md-raised-button *ngIf="petition.status == 'In Transit'"(click)="setStatus(petition._id, $event)" value="Delivered">Delivered</button>
+                    <button *ngIf="petition.status == 'Pending Confirmation'" (click)="setStatus(petition._id, $event)" value="Confirmed">Confirm</button>
+                    <button *ngIf="petition.status == 'Pending Confirmation'" (click)="setStatus(petition._id, $event)" value="Rejected">Reject</button>
+                    <button *ngIf="petition.status == 'Delivered to Carrier'" (click)="setStatus(petition._id, $event)" value="In Transit">In Transit</button>
+                    <button *ngIf="petition.status == 'In Transit'"(click)="setStatus(petition._id, $event)" value="Delivered">Delivered</button>
                   </div>
                 <p>request by: <a [routerLink]="['/user', petition.requestUser._id]">{{petition.requestUser.username}}</a></p>
               </div>
@@ -55,7 +43,7 @@
           <div *ngIf="session.user._id == route.creator_id">
         <md-card-actions>
           <button md-raised-button (click)="remove(route._id)">Delete</button>
-          <button md-raised-button (click)="showEditRouteForm($event)" value="{{route._id}}">Edit</button>
+          <button md-raised-button (click)="routeEditDialog()" value="{{route._id}}">Edit</button>
         </md-card-actions>
           </div>
       </md-card>
@@ -81,8 +69,8 @@
           <p>status: {{petition.status}}</p>
         </md-card-content>
         <md-card-actions>
-          <button md-raised-button *ngIf="session.user._id == petition.requestUser && petition.status == 'Confirmed'" (click)="setStatus(petition._id, $event)" value="Delivered to Carrier">Delivered to Carrier</button>
-          <button md-raised-button *ngIf="session.user._id == petition.requestUser && petition.status == 'Delivered'" (click)="showFormRateUser($event)" value="{{petition._id}}">Rate {{petition.route_id.creator_id}}</button>
+          <button *ngIf="session.user._id == petition.requestUser && petition.status == 'Confirmed'" (click)="setStatus(petition._id, $event)" value="Delivered to Carrier">Delivered to Carrier</button>
+          <button md-raised-button *ngIf="session.user._id == petition.requestUser && petition.status == 'Delivered'" (click)="userRatingDialog()" value="{{petition._id}}">Rate {{petition.route_id.creator_id}}</button>
         </md-card-actions>
       </md-card>
     </div>

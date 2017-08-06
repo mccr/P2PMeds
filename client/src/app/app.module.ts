@@ -55,6 +55,9 @@ import { RouteComponent } from './route/route.component';
 import { SignupComponent } from './signup/signup.component';
 import { RouteNewComponent } from './route-new/route-new.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
+import { RouteEditComponent } from './route-edit/route-edit.component';
+import { UserRatingComponent } from './user-rating/user-rating.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +67,15 @@ import { NavbarComponent } from './navbar/navbar.component';
     RouteComponent,
     SignupComponent,
     RouteNewComponent,
-    NavbarComponent
+    NavbarComponent,
+    UserEditComponent,
+    RouteEditComponent,
+    UserRatingComponent
+  ],
+  entryComponents: [
+    UserEditComponent,
+    RouteEditComponent,
+    UserRatingComponent
   ],
   imports: [
     BrowserModule,

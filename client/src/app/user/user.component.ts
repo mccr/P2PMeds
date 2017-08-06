@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import {MdDialog, MdDialogRef} from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../shared/user.service';
 import { SessionService } from '../../shared/session.service';
 import { PetitionService } from '../../shared/petition.service';
 import { RouteService } from '../../shared/route.service';
 import { RatingService } from '../../shared/rating.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { UserEditComponent } from '../user-edit/user-edit.component';
+import { RouteEditComponent } from '../route-edit/route-edit.component';
+import { UserRatingComponent } from '../user-rating/user-rating.component';
 import { Observable } from 'rxjs';
 import "rxjs/add/operator/mergeMap";
 
@@ -23,6 +27,7 @@ export class UserComponent implements OnInit {
   showEditRoute:string = "";
   showRateForm:string = "";
 
+
   constructor(
     private router: Router,
     private session: SessionService,
@@ -30,7 +35,8 @@ export class UserComponent implements OnInit {
     private routeActv:ActivatedRoute,
     private petition: PetitionService,
     private RouteService: RouteService,
-    private RatingService: RatingService
+    private RatingService: RatingService,
+    public dialog: MdDialog
     ) {
     routeActv.params
     .mergeMap( p => UserService.show(p.id) )
@@ -46,25 +52,26 @@ export class UserComponent implements OnInit {
   ngOnInit() {
   }
 
-  showForm(){
-    this.show = !this.show;
-  }
+  userEditDialog() {
+     let userEditDialogRef = this.dialog.open(UserEditComponent);
+     userEditDialogRef.afterClosed().subscribe(result => {
+       console.log(result);
+     });
+   }
 
-  update(id, myForm) {
-    this.UserService.update(id, myForm.value).subscribe(user => console.log(user));
-    this.show = !this.show;
-  }
-
-  showEditRouteForm(e){
-    if(this.showEditRoute == e.target.value){
-      this.showEditRoute = "";
-    } else {
-      this.showEditRoute = e.target.value;
+   userRatingDialog() {
+      let userRatingDialogRef = this.dialog.open(UserRatingComponent);
+      userRatingDialogRef.afterClosed().subscribe(result => {
+        console.log(result);
+      });
     }
-  }
-  editRoute(id, myEditRouteForm){
-    this.RouteService.update(id, myEditRouteForm.value).subscribe((route) => console.log(route));
-  }
+
+   routeEditDialog() {
+      let routeEditDialogRef = this.dialog.open(RouteEditComponent);
+      routeEditDialogRef.afterClosed().subscribe(result => {
+        console.log(result);
+      });
+    }
 
   remove(id){
     this.RouteService.remove(id).subscribe( res => {
@@ -91,14 +98,4 @@ export class UserComponent implements OnInit {
     });
   }
 
-  showFormRateUser(e){
-    if(this.showRateForm == e.target.value){
-      this.showRateForm = "";
-    } else {
-      this.showRateForm = e.target.value;
-    }
-  }
-  rateUser(ratedUser_id, myRateForm){
-    this.RatingService.create(ratedUser_id, myRateForm.value).subscribe( rating => console.log(rating))
-  }
 }
