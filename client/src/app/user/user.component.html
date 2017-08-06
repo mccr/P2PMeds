@@ -19,7 +19,7 @@
 
 <md-tab-group>
   <md-tab label="My Routes">
-    <div class="flex-container wrap">
+    <div class="flex-container wrap" *ngIf="routesCreated">
     <md-card class="flex-item" *ngFor="let route of routesCreated">
       <md-card-header>
         <md-card-title>Date: {{route.date | date:'shortDate'}}</md-card-title>
@@ -44,9 +44,8 @@
           </div>
         </div>
       </md-card-content>
-              <div *ngIf="session.user._id == route.creator_id">
+        <div *ngIf="session.user._id == route.creator_id">
       <md-card-actions>
-
         <button type="button" name="button" (click)="remove(route._id)">delete route</button>
         <button type="button" name="button" (click)="showEditRouteForm($event)" value="{{route._id}}">EDIT</button>
       </md-card-actions>
@@ -55,31 +54,29 @@
   </div>
   </md-tab>
   <md-tab label="My Petitions">
-    <div *ngIf="petitionsMade">
-      <h1>My Petitions</h1>
-      <div *ngFor="let petition of petitionsMade">
-        <h4>Route:</h4>
-        <p>From: {{petition.route_id.from}}</p>
-        <p>To:{{petition.route_id.to}}</p>
-        <p>Date:{{petition.route_id.date | date:'shortDate'}}</p>
-        <p>creator: {{petition.route_id.creator_id}}</p>
+    <div class="flex-container wrap" *ngIf="petitionsMade">
+    <md-card class="flex-item" *ngFor="let petition of petitionsMade">
+      <md-card-header>
+        <div md-card-avatar class="header-image"></div>
+        <md-card-title>creator: {{petition.route_id.creator_id}}</md-card-title>
+        <md-card-subtitle>BADGES</md-card-subtitle>
+        <md-card-subtitle><i>star icon</i><a>promedio de rating</a></md-card-subtitle>
+        <md-card-subtitle><a>total de opiniones</a></md-card-subtitle>
+      </md-card-header>
+      <md-card-content>
+        <p>Date: {{petition.route_id.date | date:'shortDate'}}</p>
+        <p>From: {{petition.route_id.from}}
+        <i>airplane icon</i>
+        To: {{petition.route_id.to}}</p>
         <h4>Petition:</h4>
         <p>status: {{petition.status}}</p>
+      </md-card-content>
+      <md-card-actions>
         <button *ngIf="session.user._id == petition.requestUser && petition.status == 'Confirmed'" type="button" name="button" (click)="setStatus(petition._id, $event)" value="Delivered to Carrier">Delivered to Carrier</button>
         <button *ngIf="session.user._id == petition.requestUser && petition.status == 'Delivered'" type="button" name="button" (click)="showFormRateUser($event)" value="{{petition._id}}">Rate {{petition.route_id.creator_id}}</button>
-        <div *ngIf="showRateForm == petition._id">
-          <h1> Rate {{petition.route_id.creator_id}} </h1>
-          <form (ngSubmit)="rateUser(petition.route_id.creator_id, myRateForm)" #myRateForm="ngForm">
-            <label> Stars </label>
-            <input type="text" [(ngModel)]="stars" name="stars"/>
-            <label> comment </label>
-            <textarea name="comment" [(ngModel)]="comment"></textarea>
-
-            <button type="submit"> Add Rating </button>
-          </form>
-      </div>
-      </div>
-    </div>
+      </md-card-actions>
+    </md-card>
+  </div>
   </md-tab>
   <md-tab label="My Ratings">my ratings</md-tab>
 </md-tab-group>
@@ -123,5 +120,31 @@
           <button type="submit"> Edit route </button>
         </form>
     </div>
+  </div>
+</div-->
+
+<!--div *ngIf="petitionsMade">
+  <h1>My Petitions</h1>
+  <div *ngFor="let petition of petitionsMade">
+    <h4>Route:</h4>
+    <p>From: {{petition.route_id.from}}</p>
+    <p>To:{{petition.route_id.to}}</p>
+    <p>Date:{{petition.route_id.date | date:'shortDate'}}</p>
+    <p>creator: {{petition.route_id.creator_id}}</p>
+    <h4>Petition:</h4>
+    <p>status: {{petition.status}}</p>
+    <button *ngIf="session.user._id == petition.requestUser && petition.status == 'Confirmed'" type="button" name="button" (click)="setStatus(petition._id, $event)" value="Delivered to Carrier">Delivered to Carrier</button>
+    <button *ngIf="session.user._id == petition.requestUser && petition.status == 'Delivered'" type="button" name="button" (click)="showFormRateUser($event)" value="{{petition._id}}">Rate {{petition.route_id.creator_id}}</button>
+    <div *ngIf="showRateForm == petition._id">
+      <h1> Rate {{petition.route_id.creator_id}} </h1>
+      <form (ngSubmit)="rateUser(petition.route_id.creator_id, myRateForm)" #myRateForm="ngForm">
+        <label> Stars </label>
+        <input type="text" [(ngModel)]="stars" name="stars"/>
+        <label> comment </label>
+        <textarea name="comment" [(ngModel)]="comment"></textarea>
+
+        <button type="submit"> Add Rating </button>
+      </form>
+  </div>
   </div>
 </div-->
