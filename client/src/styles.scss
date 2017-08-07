@@ -6,6 +6,9 @@ body {
 }
 html {
   font-family: 'Raleway', sans-serif;
+  > .mat-card {
+    font-family: 'Raleway', sans-serif;
+  }
 }
 *:focus {
   outline: 0;

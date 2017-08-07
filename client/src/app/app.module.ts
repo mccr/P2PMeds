@@ -128,7 +128,6 @@ import { UserRatingComponent } from './user-rating/user-rating.component';
     SessionService,
     { provide: 'BASE_ENDPOINT', useValue: environment.baseEndpoint },
     { provide: 'API_ENDPOINT', useValue: environment.apiEndpoint },
-    // {provide: MD_ERROR_GLOBAL_OPTIONS, useValue: { errorStateMatcher: showOnDirtyErrorStateMatcher }}
   ],
   bootstrap: [AppComponent]
 })

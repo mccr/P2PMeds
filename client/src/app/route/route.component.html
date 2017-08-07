@@ -1,4 +1,6 @@
-<header></header>
+<header>
+ <p></p>
+</header>
 <section>
   <h1> search for routes </h1>
 
@@ -12,7 +14,7 @@
       <md-error>This field is required</md-error>
     </md-input-container>
     <md-input-container>
-      <input mdInput [(ngModel)]="date" [mdDatepicker]="picker" placeholder="Choose a date" name="date">
+      <input mdInput [(ngModel)]="date" [mdDatepicker]="picker" placeholder="Choose a date" name="date" required>
       <button mdSuffix [mdDatepickerToggle]="picker"></button>
     </md-input-container>
     <md-datepicker #picker></md-datepicker>
@@ -21,23 +23,24 @@
 
 
     <div class="flex-container wrap">
-    <md-card class="flex-item" *ngFor="let route of routes">
+    <md-card class="flex-item" *ngFor="let route of routesData">
       <md-card-header>
         <div md-card-avatar class="header-image"></div>
-        <md-card-title>creator: {{route.creator_id.username}}</md-card-title>
+        <md-card-title class="username">{{route.route.creator_id.name}}</md-card-title>
         <md-card-subtitle>BADGES</md-card-subtitle>
-        <md-card-subtitle><i>star icon</i><a>promedio de rating</a></md-card-subtitle>
-        <md-card-subtitle><a>total de opiniones</a></md-card-subtitle>
+        <md-card-subtitle><div class="star-icon"></div>4.3/5 - 9 opiniones</md-card-subtitle>
       </md-card-header>
       <md-card-content>
-        <p>Date: {{route.date | date:'shortDate'}}</p>
-        <p>From: {{route.from}}
-        <i>airplane icon</i>
-        To: {{route.to}}</p>
-        <h1>1 Petitions</h1>
+        <div class="entire-route">
+          <span class="route">{{route.route.from}}</span>
+          <div class="airplane"></div>
+          <span class="route">{{route.route.to}}</span>
+        </div>
+        <p>{{route.route.date | date:'fullDate'}}</p>
       </md-card-content>
       <md-card-actions>
-        <md-button-toggle (click)="newPetition(route._id)">make a petition</md-button-toggle>
+        <p class="petitions">{{route.petitions.length}} Petitions</p>
+        <md-button-toggle (click)="newPetition(route.route._id)">make a petition</md-button-toggle>
       </md-card-actions>
     </md-card>
   </div>

@@ -25,14 +25,13 @@ module.exports = {
                 SendEventModel.find({route_id: r._id})
                 .exec()
                 .then( petitions => {
-                resolve({route: route, petitionLength: petitions.length});
+                resolve({route: route, petitions: petitions});
                 });
               });
             });
         });
         Promise.all(routesFound).then(routesFoundData => {
-          console.log(routesFoundData);
-          //return res.status(200).json(routesFoundData);
+          return res.status(200).json(routesFoundData);
             });
         })
         .catch( err => {
