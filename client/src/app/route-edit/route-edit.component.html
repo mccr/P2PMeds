@@ -1,5 +1,4 @@
 <h2 md-dialog-title>Edit Route</h2>
-<md-dialog-content>
     <form (ngSubmit)="updateRoute(myForm)" #myForm="ngForm">
     <md-input-container>
       <input mdInput [(ngModel)]="from" placeholder="From" name="from">
@@ -12,9 +11,6 @@
       <button mdSuffix [mdDatepickerToggle]="picker"></button>
     </md-input-container>
     <md-datepicker #picker></md-datepicker>
+      <button md-raised-button type="submit"> edit route </button>
     </form>
-</md-dialog-content>
-<md-dialog-actions>
-  <button md-raised-button type="submit"> edit route </button>
-</md-dialog-actions>
 <p class="error"> {{ error }} </p>

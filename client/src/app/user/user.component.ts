@@ -53,21 +53,36 @@ export class UserComponent implements OnInit {
   }
 
   userEditDialog() {
-     let userEditDialogRef = this.dialog.open(UserEditComponent);
+     let userEditDialogRef = this.dialog.open(UserEditComponent, {
+      height: '400px',
+      width: '600px'
+     });
      userEditDialogRef.afterClosed().subscribe(result => {
        console.log(result);
      });
    }
 
-   userRatingDialog() {
-      let userRatingDialogRef = this.dialog.open(UserRatingComponent);
+   userRatingDialog(e) {
+     console.log(e.target.value)
+     let petitionID = e.target.value;
+      let userRatingDialogRef = this.dialog.open(UserRatingComponent, {
+       height: '400px',
+       width: '600px',
+       data: petitionID
+      });
       userRatingDialogRef.afterClosed().subscribe(result => {
         console.log(result);
       });
     }
 
-   routeEditDialog() {
-      let routeEditDialogRef = this.dialog.open(RouteEditComponent);
+   routeEditDialog(e) {
+     console.log(e.target.value)
+     let routeID = e.target.value;
+      let routeEditDialogRef = this.dialog.open(RouteEditComponent, {
+       height: '400px',
+       width: '600px',
+       data: routeID
+      });
       routeEditDialogRef.afterClosed().subscribe(result => {
         console.log(result);
       });

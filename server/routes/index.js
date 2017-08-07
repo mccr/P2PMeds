@@ -1,7 +1,6 @@
 const path = require('path');
 
 module.exports = function(app) {
-  app.use('/api/auth', require('../api/passport/authFB'));
   app.use('/api/', require('../api/passport/authLocal'));
   app.use('/api/rating', require('../api/Rating/RatingRoutes'));
   app.use('/api/route', require('../api/Route/RouteRoutes'));

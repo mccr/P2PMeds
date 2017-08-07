@@ -7,9 +7,9 @@
     <md-input-container>
       <input mdInput [(ngModel)]="profilePic" placeholder="Profile Picture" name="profilePic">
     </md-input-container>
+    <md-dialog-actions>
+      <button md-raised-button type="submit"> edit profile </button>
+    </md-dialog-actions>
     </form>
 </md-dialog-content>
-<md-dialog-actions>
-  <button md-raised-button md-dialog-close="done" type="submit"> edit profile </button>
-</md-dialog-actions>
 <p class="error"> {{ error }} </p>

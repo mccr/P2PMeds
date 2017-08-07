@@ -43,7 +43,7 @@
           <div *ngIf="session.user._id == route.creator_id">
         <md-card-actions>
           <button md-raised-button (click)="remove(route._id)">Delete</button>
-          <button md-raised-button (click)="routeEditDialog()" value="{{route._id}}">Edit</button>
+          <button (click)="routeEditDialog($event)" value="{{route._id}}">Edit</button>
         </md-card-actions>
           </div>
       </md-card>
@@ -70,7 +70,7 @@
         </md-card-content>
         <md-card-actions>
           <button *ngIf="session.user._id == petition.requestUser && petition.status == 'Confirmed'" (click)="setStatus(petition._id, $event)" value="Delivered to Carrier">Delivered to Carrier</button>
-          <button md-raised-button *ngIf="session.user._id == petition.requestUser && petition.status == 'Delivered'" (click)="userRatingDialog()" value="{{petition._id}}">Rate {{petition.route_id.creator_id}}</button>
+          <button *ngIf="session.user._id == petition.requestUser && petition.status == 'Delivered'" (click)="userRatingDialog($event)" value="{{petition._id}}">Rate {{petition.route_id.creator_id}}</button>
         </md-card-actions>
       </md-card>
     </div>
