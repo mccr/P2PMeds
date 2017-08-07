@@ -7,6 +7,27 @@ const RatingModel = require('./RatingModel.js');
  */
 module.exports = {
 
+  /**
+   * Rating.show()
+   */
+  show: (req, res) => {
+      const userID = req.params.id;
+      RatingModel.find({ratedUser_id: userID})
+      .exec()
+      .then( ratings => {
+        myRatings = ratings.map( r => {
+          return new Promise((resolve, reject) => {
+            r.populate('user_id', (err, rate) => {
+              resolve(rate);
+            });
+          });
+      });
+      Promise.all(myRatings).then(myRates => {
+        return res.status(200).json(myRates);
+          });
+      });
+  },
+
     /**
      * RatingController.create()
      */

@@ -27,7 +27,7 @@ export class RouteEditComponent implements OnInit {
     console.log(myForm.value);
     if(myForm.value.date){
       let day: string, month: string, year: string;
-      day = myForm.value.date.getDate();
+      day = (myForm.value.date.getDate() < 10) ? '0'+(myForm.value.date.getDate()) : myForm.value.date.getDate();
       month = (myForm.value.date.getMonth() < 10) ? '0'+(myForm.value.date.getMonth()+1) : (myForm.value.date.getMonth()+1);
       year = myForm.value.date.getFullYear();
       date = year+'-'+month+'-'+day;
@@ -39,5 +39,6 @@ export class RouteEditComponent implements OnInit {
       date: date
     }
     this.routeService.update(this.routeID, formValue).subscribe((route) => console.log(route));
+    this.routeEditDialogRef.close()
   }
 }

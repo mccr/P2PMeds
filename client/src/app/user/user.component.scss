@@ -24,7 +24,17 @@
 
 button {
   text-transform: uppercase;
+  &.remove {
+    background: url('../../assets/images/close-button.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 15px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
 }
+
 
 section {
   width: 90%;

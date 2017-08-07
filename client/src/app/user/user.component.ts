@@ -23,29 +23,33 @@ export class UserComponent implements OnInit {
   routesCreated:Array<Object> = [];
   petitionsMade:Array<Object> = [];
   routesWithPetitions:Array<Object>;
-  show:boolean = false;
-  showEditRoute:string = "";
-  showRateForm:string = "";
-
+  myRatings:Array<Object> = [];
 
   constructor(
     private router: Router,
     private session: SessionService,
-    private UserService: UserService,
+    private userService: UserService,
     private routeActv:ActivatedRoute,
     private petition: PetitionService,
     private RouteService: RouteService,
-    private RatingService: RatingService,
+    private rating: RatingService,
     public dialog: MdDialog
     ) {
     routeActv.params
-    .mergeMap( p => UserService.show(p.id) )
+    .mergeMap( p => userService.show(p.id) )
     .subscribe( (info:Object) => {
       console.log(info);
       this.user = info['User'];
       this.routesCreated = info['routes'];
-      this.routesWithPetitions = info['createData']
-      this.petitionsMade = info['petitionData'];
+      this.routesWithPetitions = info['createData'];
+      petition.show(this.user['_id']).subscribe( (petitions:Array<object>) => {
+        this.petitionsMade = petitions
+        console.log(this.petitionsMade)
+      });
+      rating.show(this.user['_id']).subscribe( (ratings:Array<object>) => {
+        this.myRatings = ratings
+        console.log(this.myRatings)
+      });
     });
    }
 
@@ -66,7 +70,7 @@ export class UserComponent implements OnInit {
      console.log(e.target.value)
      let petitionID = e.target.value;
       let userRatingDialogRef = this.dialog.open(UserRatingComponent, {
-       height: '400px',
+       height: '300px',
        width: '600px',
        data: petitionID
       });
@@ -86,6 +90,10 @@ export class UserComponent implements OnInit {
       routeEditDialogRef.afterClosed().subscribe(result => {
         console.log(result);
       });
+    }
+
+    newPetition(routeID){
+      this.petition.create(routeID).subscribe(petition => console.log(petition))
     }
 
   remove(id){

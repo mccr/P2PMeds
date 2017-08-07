@@ -1,4 +1,5 @@
 const RouteModel = require('./RouteModel.js');
+const SendEventModel = require('../SendEvent/SendEventModel.js');
 
 /**
  * RouteController.js
@@ -18,8 +19,21 @@ module.exports = {
         })
         .exec()
         .then( routes => {
-          console.log(routes);
-          return res.status(200).json(routes);
+          routesFound = routes.map( r => {
+            return new Promise((resolve, reject) => {
+              r.populate('creator_id', (err, route) => {
+                SendEventModel.find({route_id: r._id})
+                .exec()
+                .then( petitions => {
+                resolve({route: route, petitionLength: petitions.length});
+                });
+              });
+            });
+        });
+        Promise.all(routesFound).then(routesFoundData => {
+          console.log(routesFoundData);
+          //return res.status(200).json(routesFoundData);
+            });
         })
         .catch( err => {
           return res.status(500).json({

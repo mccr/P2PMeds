@@ -1,5 +1,4 @@
 <h2 md-dialog-title>Edit Profile</h2>
-<md-dialog-content>
     <form (ngSubmit)="update(session.user._id, myForm)" #myForm="ngForm">
     <md-input-container>
       <input mdInput [(ngModel)]="email" placeholder="Email" name="email">
@@ -7,9 +6,6 @@
     <md-input-container>
       <input mdInput [(ngModel)]="profilePic" placeholder="Profile Picture" name="profilePic">
     </md-input-container>
-    <md-dialog-actions>
       <button md-raised-button type="submit"> edit profile </button>
-    </md-dialog-actions>
     </form>
-</md-dialog-content>
 <p class="error"> {{ error }} </p>

@@ -18,7 +18,7 @@ export class RouteComponent implements OnInit {
 
   searchRoutes(myForm){
     let day: string, month: string, year: string;
-    day = myForm.value.date.getDate();
+    day = (myForm.value.date.getDate() < 10) ? '0'+(myForm.value.date.getDate()) : myForm.value.date.getDate();
     month = (myForm.value.date.getMonth() < 10) ? '0'+(myForm.value.date.getMonth()+1) : (myForm.value.date.getMonth()+1);
     year = myForm.value.date.getFullYear();
     let formValue: Object = {
@@ -27,7 +27,7 @@ export class RouteComponent implements OnInit {
       date: year+'-'+month+'-'+day
     }
     console.log(formValue)
-    this.route.list(formValue).subscribe((routes:Array<Object>) => this.routes = routes );
+    this.route.list(formValue).subscribe((routes:Array<Object>) => this.routes = routes);
   }
 
   newPetition(routeID){

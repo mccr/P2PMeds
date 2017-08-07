@@ -1,6 +1,7 @@
 var UserModel = require('./UserModel.js'),
     RouteModel = require('../Route/RouteModel.js'),
-    SendEventModel = require('../SendEvent/SendEventModel.js');
+    SendEventModel = require('../SendEvent/SendEventModel.js'),
+    RatingModel = require('../Rating/RatingModel.js');
 
 /**
  * UserController.js
@@ -40,22 +41,12 @@ module.exports = {
             });
           });
           Promise.all(petitionsPromises).then(createData => {
-            SendEventModel.find({requestUser: User._id})
-            .exec()
-            .then( petitions => {
-              petitionMade = petitions.map( p => {
-                return new Promise((resolve, reject) => {
-                  p.populate('route_id', (err, pet) => {
-                    console.log(pet);
-                    resolve(pet);
-                  });
+            return res.status(200).json({
+                User: User,
+                routes:routes,
+                createData: createData
                 });
             });
-            Promise.all(petitionMade).then(petitionMadeData => {
-                return res.status(200).json({User: User, routes:routes, createData: createData, petitionData: petitionMadeData});
-            });
-          });
-        });
       });
     })
       .catch(err => {

@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { routes } from './routes';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AsyncPipe } from '@angular/common';
+import { StarRatingModule } from 'angular-star-rating';
 import {
   MaterialModule,
   MdAutocompleteModule,
@@ -78,6 +78,7 @@ import { UserRatingComponent } from './user-rating/user-rating.component';
     UserRatingComponent
   ],
   imports: [
+    StarRatingModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),

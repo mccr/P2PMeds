@@ -22,6 +22,12 @@ export class RatingService {
     return Observable.throw(e.json().message);
   }
 
+  show(userID:string):Observable<object> {
+    return this.http.get(`${this.endpoint}/rating/${userID}`, this.options)
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
   create(ratedUser_id, rating):Observable<object> {
     return this.http.post(`${this.endpoint}/rating`, {stars: rating.stars, comment: rating.comment, ratedUser_id: ratedUser_id}, this.options)
       .map(res => res.json())

@@ -3,6 +3,11 @@ var router = express.Router();
 var SendEventController = require('./SendEventController.js');
 
 /*
+ * GET
+ */
+router.get('/:id', SendEventController.show);
+
+/*
  * POST
  */
 router.post('/', SendEventController.create);

@@ -23,5 +23,6 @@ export class UserEditComponent implements OnInit {
   update(id, myForm) {
     console.log(id, myForm.value)
     this.userService.update(id, myForm.value).subscribe(user => console.log(user));
+    this.userEditDialogRef.close()
   }
 }

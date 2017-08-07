@@ -17,7 +17,7 @@ export class RouteNewComponent implements OnInit {
 
   newRoute(myForm){
     let day: string, month: string, year: string;
-    day = myForm.value.date.getDate();
+    day = (myForm.value.date.getDate() < 10) ? '0'+(myForm.value.date.getDate()) : myForm.value.date.getDate();
     month = (myForm.value.date.getMonth() < 10) ? '0'+(myForm.value.date.getMonth()+1) : (myForm.value.date.getMonth()+1);
     year = myForm.value.date.getFullYear();
     let formValue: Object = {

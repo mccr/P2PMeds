@@ -1,5 +1,4 @@
 <header></header>
-
 <section>
   <h1> search for routes </h1>
 
@@ -25,7 +24,7 @@
     <md-card class="flex-item" *ngFor="let route of routes">
       <md-card-header>
         <div md-card-avatar class="header-image"></div>
-        <md-card-title>creator: {{route.creator_id}}</md-card-title>
+        <md-card-title>creator: {{route.creator_id.username}}</md-card-title>
         <md-card-subtitle>BADGES</md-card-subtitle>
         <md-card-subtitle><i>star icon</i><a>promedio de rating</a></md-card-subtitle>
         <md-card-subtitle><a>total de opiniones</a></md-card-subtitle>

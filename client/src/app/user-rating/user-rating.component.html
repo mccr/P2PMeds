@@ -1,11 +1,12 @@
 <h2 md-dialog-title>Rate User!</h2>
     <form (ngSubmit)="rateUser(myForm)" #myForm="ngForm">
-    <md-input-container>
-      <input mdInput [(ngModel)]="stars" placeholder="Stars" name="stars">
-    </md-input-container>
+    <star-rating-comp   [starType]="'svg'"
+                          [staticColor]="'ok'"
+                          [size]="'large'"
+                          (onClick)="onClick($event)"></star-rating-comp>
     <md-input-container>
       <input mdInput [(ngModel)]="comment" placeholder="Comment" name="comment">
     </md-input-container>
       <button md-raised-button type="submit"> add rating </button>
-    </form>
+     </form>
 <p class="error"> {{ error }} </p>

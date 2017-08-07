@@ -2,6 +2,12 @@ var express = require('express');
 var router = express.Router();
 var RatingController = require('./RatingController.js');
 
+
+/*
+ * GET
+ */
+router.get('/:id', RatingController.show);
+
 /*
  * POST
  */

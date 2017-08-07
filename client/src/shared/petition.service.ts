@@ -22,6 +22,12 @@ export class PetitionService {
     return Observable.throw(e.json().message);
   }
 
+  show(userID:string):Observable<object> {
+    return this.http.get(`${this.endpoint}/petition/${userID}`, this.options)
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
   create(routeID):Observable<object> {
     console.log(routeID)
     return this.http.post(`${this.endpoint}/petition`, {route_id: routeID}, this.options)
