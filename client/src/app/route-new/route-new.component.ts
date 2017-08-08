@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouteService } from '../../shared/route.service';
+import { AirportService } from '../../shared/airport.service';
 import { Observable } from 'rxjs';
 import {Router} from '@angular/router';
 
@@ -9,8 +10,15 @@ import {Router} from '@angular/router';
   styleUrls: ['./route-new.component.min.css']
 })
 export class RouteNewComponent implements OnInit {
+  veAirports:Array<string>;
+  worldAirports:Array<string>;
 
-  constructor(private route: RouteService, private router: Router) { }
+  constructor(private route: RouteService, private router: Router, private airport: AirportService) {
+    airport.list().subscribe( airports => {
+      this.veAirports = airports['veAirports'];
+      this.worldAirports = airports['worldAirports'];
+    })
+   }
 
   ngOnInit() {
   }

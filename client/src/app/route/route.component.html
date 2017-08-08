@@ -6,16 +6,17 @@
 
   <form (ngSubmit)="searchRoutes(myForm)" #myForm="ngForm">
     <md-input-container>
-      <input mdInput [(ngModel)]="from" placeholder="From" name="from" required>
+      <input mdInput ngui-auto-complete [(ngModel)]="from" [source]="worldAirports" placeholder="From" name="from" required>
       <md-error>This field is required</md-error>
     </md-input-container>
     <md-input-container>
-      <input mdInput [(ngModel)]="to" placeholder="To" name="to" required>
+      <input mdInput ngui-auto-complete [(ngModel)]="to" [source]="veAirports" placeholder="To" name="to" required>
       <md-error>This field is required</md-error>
     </md-input-container>
     <md-input-container>
       <input mdInput [(ngModel)]="date" [mdDatepicker]="picker" placeholder="Choose a date" name="date" required>
       <button mdSuffix [mdDatepickerToggle]="picker"></button>
+      <md-error>This field is required</md-error>
     </md-input-container>
     <md-datepicker #picker></md-datepicker>
     <button md-raised-button type="submit"> search </button>
@@ -40,7 +41,7 @@
       </md-card-content>
       <md-card-actions>
         <p class="petitions">{{route.petitions.length}} Petitions</p>
-        <md-button-toggle (click)="newPetition(route.route._id)">make a petition</md-button-toggle>
+        <md-button-toggle (click)="newPetition(route.route._id, $event)">Make a petition</md-button-toggle>
       </md-card-actions>
     </md-card>
   </div>

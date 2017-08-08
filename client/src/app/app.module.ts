@@ -7,6 +7,8 @@ import { routes } from './routes';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StarRatingModule } from 'angular-star-rating';
+import { NguiAutoCompleteModule } from '@ngui/auto-complete';
+
 import {
   MaterialModule,
   MdAutocompleteModule,
@@ -47,6 +49,7 @@ import { SessionService } from '../shared/session.service';
 import { RouteService } from '../shared/route.service';
 import { PetitionService } from '../shared/petition.service';
 import { RatingService } from '../shared/rating.service';
+import { AirportService } from '../shared/airport.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -84,6 +87,7 @@ import { UserRatingComponent } from './user-rating/user-rating.component';
     RouterModule.forRoot(routes),
     HttpModule,
     FormsModule,
+    NguiAutoCompleteModule,
     MaterialModule,
     MdNativeDateModule,
     ReactiveFormsModule,
@@ -126,6 +130,7 @@ import { UserRatingComponent } from './user-rating/user-rating.component';
     PetitionService,
     RouteService,
     SessionService,
+    AirportService,
     { provide: 'BASE_ENDPOINT', useValue: environment.baseEndpoint },
     { provide: 'API_ENDPOINT', useValue: environment.apiEndpoint },
   ],

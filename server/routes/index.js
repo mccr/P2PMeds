@@ -6,6 +6,7 @@ module.exports = function(app) {
   app.use('/api/route', require('../api/Route/RouteRoutes'));
   app.use('/api/petition', require('../api/SendEvent/SendEventRoutes'));
   app.use('/api/user', require('../api/User/UserRoutes'));
+  app.use('/api/airports', require('../api/Airports/airportRoutes'));
 
 	// catch 404 and forward to Angular
   app.all('/*', function (req, res) {

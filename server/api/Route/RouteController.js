@@ -1,5 +1,6 @@
 const RouteModel = require('./RouteModel.js');
 const SendEventModel = require('../SendEvent/SendEventModel.js');
+const RatingModel = require('../Rating/RatingModel.js');
 
 /**
  * RouteController.js
@@ -25,7 +26,15 @@ module.exports = {
                 SendEventModel.find({route_id: r._id})
                 .exec()
                 .then( petitions => {
-                resolve({route: route, petitions: petitions});
+                  RatingModel.find({ratedUser_id: route.creator_id._id})
+                  .exec()
+                  .then( ratings => {
+                    resolve({
+                      route: route,
+                      petitions: petitions,
+                      ratings: ratings
+                    });
+                  });
                 });
               });
             });
