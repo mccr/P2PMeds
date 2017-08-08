@@ -6,7 +6,15 @@ var SendEventSchema = new Schema({
 	'requestUser' : { type: Schema.Types.ObjectId, ref: 'User', required: true },
 	'status' : {
         type: String,
-        enum: ['Pending Confirmation', 'Confirmed', 'Delivered to Carrier', 'In Transit', 'Delivered', 'Rejected'],
+        enum: [
+					'Pending Confirmation',
+					'Confirmed',
+					'Delivered to Carrier',
+					'In Transit',
+					'Delivered',
+					'Rejected',
+					'Completed'
+				],
         required: true
         }
 });

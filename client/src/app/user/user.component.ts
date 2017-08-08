@@ -55,27 +55,27 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
   }
-
   userEditDialog() {
      let userEditDialogRef = this.dialog.open(UserEditComponent, {
       height: '400px',
       width: '600px'
      });
      userEditDialogRef.afterClosed().subscribe(result => {
-       console.log(result);
+       if(result) this.user = result['user'];
      });
    }
 
-   userRatingDialog(e) {
-     console.log(e.target.value)
-     let petitionID = e.target.value;
+   userRatingDialog(petitionID, ratedUserID) {
       let userRatingDialogRef = this.dialog.open(UserRatingComponent, {
        height: '300px',
        width: '600px',
-       data: petitionID
+       data: {ratedUserID: ratedUserID, petitionID: petitionID}
       });
       userRatingDialogRef.afterClosed().subscribe(result => {
-        console.log(result);
+        if(result){
+          let update = this.petitionsMade.filter( p => p['_id'] == petitionID);
+          update[0]['status']='Completed';
+        }
       });
     }
 
@@ -88,8 +88,12 @@ export class UserComponent implements OnInit {
        data: routeID
       });
       routeEditDialogRef.afterClosed().subscribe(result => {
-        console.log(result);
-      });
+        if(result) {
+          this.routesCreated.forEach( (r, i) => {
+            if(r['_id'] == result._id) this.routesCreated[i] = result;
+          });
+        }
+    });
     }
 
     newPetition(routeID){

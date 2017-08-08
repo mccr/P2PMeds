@@ -38,7 +38,6 @@ export class RouteEditComponent implements OnInit {
       to: myForm.value.to,
       date: date
     }
-    this.routeService.update(this.routeID, formValue).subscribe((route) => console.log(route));
-    this.routeEditDialogRef.close()
+    this.routeService.update(this.routeID, formValue).subscribe((route) => this.routeEditDialogRef.close(route));
   }
 }

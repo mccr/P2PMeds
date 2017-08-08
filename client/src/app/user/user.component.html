@@ -1,7 +1,7 @@
 <header>
   <div *ngIf="user" class="user-profile">
     <div class="edit-button">
-      <button md-raised-button *ngIf="user._id == session.user._id" (click)="userEditDialog()">edit</button>
+      <button *ngIf="user._id == session.user._id" (click)="userEditDialog()">edit</button>
     </div>
       <p>{{user.name}}</p>
       <div class="header-image"></div>
@@ -73,7 +73,7 @@
         </md-card-content>
         <md-card-actions>
           <button *ngIf="session.user._id == petition.requestUser && petition.status == 'Confirmed'" (click)="setStatus(petition._id, $event)" value="Delivered to Carrier">Delivered to Carrier</button>
-          <button *ngIf="session.user._id == petition.requestUser && petition.status == 'Delivered'" (click)="userRatingDialog($event)" value="{{petition._id}}">Rate {{petition.route_id.creator_id.username}}</button>
+          <button *ngIf="session.user._id == petition.requestUser && petition.status == 'Delivered'" (click)="userRatingDialog(petition._id, petition.route_id.creator_id._id)">Rate {{petition.route_id.creator_id.username}}</button>
         </md-card-actions>
       </md-card>
     </div>

@@ -1,4 +1,5 @@
 const RatingModel = require('./RatingModel.js');
+const SendEventModel = require('../SendEvent/SendEventModel.js');
 
 /**
  * RatingController.js
@@ -40,7 +41,19 @@ module.exports = {
         });
 
         Rating.save()
-        .then( Rating => res.status(201).json(Rating))
+        .then( Rating => {
+          SendEventModel.update({_id: req.body.petition_id}, {$set : {status: "Completed"}}, (err, response) => {
+            if(err) {
+              return res.status(500).json({
+                  message: 'Error when creating Rating',
+                  error: err
+              });
+            } else {
+              res.status(201).json(Rating);
+            }
+          });
+
+        })
         .catch( err => {
           return res.status(500).json({
               message: 'Error when creating Rating',

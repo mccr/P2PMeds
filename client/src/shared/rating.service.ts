@@ -28,9 +28,8 @@ export class RatingService {
       .catch(this.handleError);
   }
 
-  create(ratedUser_id, rating):Observable<object> {
-    return this.http.post(`${this.endpoint}/rating`, {stars: rating.stars, comment: rating.comment, ratedUser_id: ratedUser_id}, this.options)
-      .map(res => res.json())
+  create(ratedUser_id, rating, petitionID):Observable<object> {
+    return this.http.post(`${this.endpoint}/rating`, {stars: rating.stars, comment: rating.comment, ratedUser_id: ratedUser_id, petition_id: petitionID}, this.options) .map(res => res.json())
       .catch(this.handleError);
   }
 

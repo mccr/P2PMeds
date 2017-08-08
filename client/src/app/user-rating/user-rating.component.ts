@@ -10,6 +10,7 @@ import {IStarRatingOnClickEvent, IStarRatingOnRatingChangeEven, IStarRatingIOnHo
   styleUrls: ['./user-rating.component.min.css']
 })
 export class UserRatingComponent implements OnInit {
+  ratedUserID: string;
   petitionID: string;
   rating: number;
 
@@ -18,7 +19,8 @@ export class UserRatingComponent implements OnInit {
     private RatingService: RatingService,
     @Inject(MD_DIALOG_DATA) public data: any
   ) {
-    this.petitionID = data;
+    this.ratedUserID = data.ratedUserID;
+    this.petitionID = data.petitionID;
    }
 
   ngOnInit() {
@@ -35,9 +37,8 @@ export class UserRatingComponent implements OnInit {
       comment: myForm.value.comment
     }
     console.log(formValue);
-    this.RatingService.create(this.petitionID, formValue).subscribe( rating => {
-      console.log(rating);
-      this.userRatingDialogRef.close()
+    this.RatingService.create(this.ratedUserID, formValue, this.petitionID).subscribe( rating => {
+      this.userRatingDialogRef.close('true');
     })
   }
 }
