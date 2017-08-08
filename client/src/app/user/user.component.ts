@@ -111,17 +111,16 @@ export class UserComponent implements OnInit {
   setStatus(id, event){
     console.log(event.target.value)
     this.petition.update(id, event.target.value).subscribe( (petition:any) => {
-      {
         console.log(petition)
         if(petition.n == 1) {
-          let result = this.routesWithPetitions.filter((e:any) => e._id == id);
-          result[0]['status'] = event.target.value;
           if(event.target.value == 'Delivered to Carrier') {
             let res = this.petitionsMade.filter((e:any) => e._id == id);
             res[0]['status'] = event.target.value;
+          } else {
+            let result = this.routesWithPetitions.filter((e:any) => e._id == id);
+            result[0]['status'] = event.target.value;
           }
         }
-      }
     });
   }
 

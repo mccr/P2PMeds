@@ -7,7 +7,8 @@ var UserSchema = new Schema({
 	'password': String,
 	'profilePic' : {type: String, default: '/images/empty-profile.png'},
 	'email' : String,
-	'badge' : Array
+	'ratingTotal': Number,
+	'badges' : Array
 });
 
 module.exports = mongoose.model('User', UserSchema);

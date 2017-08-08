@@ -6,11 +6,11 @@
 
   <form (ngSubmit)="searchRoutes(myForm)" #myForm="ngForm">
     <md-input-container>
-      <input mdInput ngui-auto-complete [(ngModel)]="from" [source]="worldAirports" placeholder="From" name="from" required>
+      <input mdInput ngui-auto-complete [(ngModel)]="from" [source]="worldAirports" placeholder="From" name="from" [max-num-list]="10" required>
       <md-error>This field is required</md-error>
     </md-input-container>
     <md-input-container>
-      <input mdInput ngui-auto-complete [(ngModel)]="to" [source]="veAirports" placeholder="To" name="to" required>
+      <input mdInput ngui-auto-complete [(ngModel)]="to" [source]="veAirports" placeholder="To" name="to" [max-num-list]="5" required>
       <md-error>This field is required</md-error>
     </md-input-container>
     <md-input-container>
@@ -22,14 +22,13 @@
     <button md-raised-button type="submit"> search </button>
   </form>
 
-
     <div class="flex-container wrap">
     <md-card class="flex-item" *ngFor="let route of routesData">
       <md-card-header>
         <div md-card-avatar class="header-image"></div>
         <md-card-title class="username">{{route.route.creator_id.name}}</md-card-title>
         <md-card-subtitle>BADGES</md-card-subtitle>
-        <md-card-subtitle><div class="star-icon"></div>4.3/5 - 9 opiniones</md-card-subtitle>
+        <md-card-subtitle><div class="star-icon"></div>4.3/5 - {{route.petitions.length}} reviews</md-card-subtitle>
       </md-card-header>
       <md-card-content>
         <div class="entire-route">

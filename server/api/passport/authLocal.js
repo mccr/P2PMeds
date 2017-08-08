@@ -44,7 +44,21 @@ router.post("/signup", (req, res, next) => {
       username,
       name: name+' '+lastName,
       email,
-      password: hashPass
+      password: hashPass,
+      badges: [
+    		'createRoute1',
+    		'createRoute3',
+    		'createRoute5',
+    		'takeMedicines3',
+    		'takeMedicines6',
+    		'takeMedicines10',
+    		'rate3',
+    		'rate5',
+    		'rate10',
+    		'cancel3',
+    		'signup'
+    	],
+      ratingTotal: 0
     });
 
     newUser.save((err) => {

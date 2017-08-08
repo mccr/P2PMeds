@@ -19,8 +19,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.username)
-    console.log(this.password)
     this.session.login(this.username, this.password)
       .subscribe(
       (user) => {
