@@ -21,34 +21,33 @@
           <md-card class="route-item cards-wrapper" *ngFor="let route of routesCreated">
             <div class="remove-btn" *ngIf="session.user._id == route.creator_id">
               <button (click)="routeEditDialog($event)" value="{{route._id}}" class="action">Edit</button>
-              <button class="remove"></button>
+              <button class="remove" (click)=remove(route._id)></button>
             </div>
             <md-card-header>
-              <md-card-title>Date: {{route.date | date:'fullDate'}}</md-card-title>
               <div class="entire-route">
                 <div class="route">
-                  <span class="airplane"></span>
+                  <span class="airplane takeoff"></span>
                   {{route.from}}
-                </div>
-                <div class="route">
-                  <span class="airplane"></span>
+                    -
                   {{route.to}}
+                  <span class="airplane landing"></span>
                 </div>
               </div>
+              <div class="route-date">{{route.date | date:'fullDate'}}</div>
             </md-card-header>
             <md-card-content>
               <div *ngIf="routesWithPetitions">
                 <div class="card-title">Petitions</div>
                 <div *ngFor="let petition of routesWithPetitions" class="petition-item">
                   <div *ngIf="route._id == petition.route_id._id">
-                    <p>Status: {{petition.status}}</p>
+                    <p><i>Status:</i> {{petition.status}}</p>
                       <div *ngIf="session.user._id == petition.route_id.creator_id" class="petition-actions">
                         <button *ngIf="petition.status == 'Pending Confirmation'" (click)="setStatus(petition._id, $event, petition.route_id.creator_id)" value="Confirmed" class="action success">Confirm</button>
                         <button *ngIf="petition.status == 'Pending Confirmation'" (click)="setStatus(petition._id, $event, petition.route_id.creator_id)" value="Rejected" class="action alert">Reject</button>
                         <button *ngIf="petition.status == 'Delivered to Carrier'" (click)="setStatus(petition._id, $event, petition.route_id.creator_id)" value="In Transit" class="action success">In Transit</button>
                         <button *ngIf="petition.status == 'In Transit'"(click)="setStatus(petition._id, $event, petition.route_id.creator_id)" value="Delivered" class="action success">Delivered</button>
                       </div>
-                    <p>request by: <a [routerLink]="['/user', petition.requestUser._id]">@{{petition.requestUser.username}}</a></p>
+                    <p><i>request by:</i> <a [routerLink]="['/user', petition.requestUser._id]">@{{petition.requestUser.username}}</a></p>
                     <div *ngIf="petition.status !== 'Pending Confirmation' && session.user._id == petition.route_id.creator_id">{{petition.requestUser.email}}</div>
                   </div>
                 </div>
