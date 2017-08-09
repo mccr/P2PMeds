@@ -52,12 +52,17 @@ export class RouteComponent implements OnInit {
   newPetition(routeID, e){
       let button = e.target;
       let route = this.routesData.filter( (r:object) => r['route']['_id'] == routeID);
+      console.log(route);
       let petitionDone = route[0]['petitions'].filter( p => p['requestUser'] == this.session.user['_id']);
         if(petitionDone.length != 0) {
           button.textContent = 'you made a petition';
           button.disabled = true;
         } else {
-          this.petition.create(routeID).subscribe(petition => console.log(petition))
+          this.petition.create(routeID).subscribe(petition => {
+            console.log(petition)
+            let petitionChange = this.routesData['route'].filter(r => r['_id'] == routeID);
+            petitionChange
+          })
         }
   }
 }

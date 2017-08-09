@@ -1,5 +1,4 @@
-$primary-font-color: #fff;
-$background-color: darkblue;
+@import '../../_vars.scss';
 
 .flex-spacer {
   flex: 1 1 auto;
@@ -7,12 +6,13 @@ $background-color: darkblue;
 
 .mat-button {
   background: transparent;
-  color: $primary-font-color;
+  color: $main-text-color;
   text-transform: uppercase;
 }
 
 md-toolbar {
-  background: $background-color;
+  background: $main-color;
+  box-shadow: 0px 1px 10px 0px #5d5d5d;
 }
 
 .fixed-header {

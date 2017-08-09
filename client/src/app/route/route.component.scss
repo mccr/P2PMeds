@@ -1,7 +1,14 @@
+@import '../../_vars.scss';
+
 .flex-container {
   padding: 0;
   margin: 0;
   display: flex;
+}
+
+.wrapper {
+  width: 1200px;
+  margin: 0 auto;
 }
 
 .wrap    {
@@ -16,61 +23,81 @@
 .header-image {
   background-image: url('http://www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-indian-girl.png');
   background-size: cover;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
 }
 
 header {
-  background: url('../../assets/hand-shake-picture-blur.jpg');
-  background-size: cover;
-  height: 500px;
+  background: url('../../assets/geometric_pattern.jpg');
+  background-size: contain;
+  height: 350px;
 }
 
 section {
   width: 90%;
   box-sizing: border-box;
   margin: 0 auto;
-  min-height: 500px;
 }
 
 .mat-card {
-  font-family: 'Raleway', sans-serif;
+  font-family: $main-font-family;
 }
 
 .mat-card-title {
-  margin-top: 10px;
+  margin-top: 8px;
   text-transform: capitalize;
-  font-size: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 22px;
 }
 
 .star-icon {
-  background: url('../../assets/images/star.svg');
+  background: url('../../assets/icons/star.svg');
   background-size: cover;
   height: 20px;
   width: 20px;
   display: inline-block;
   vertical-align: middle;
+  margin-right: 5px;
 }
 
 .airplane {
-    background: url('../../assets/images/airplane.svg');
     background-size: cover;
-    height: 50px;
-    width: 50px;
+    height: 25px;
+    width: 25px;
     display: inline-block;
     vertical-align: middle;
+    margin-right: 5px;
+    &.landing {
+      background: url('../../assets/icons/arrival.svg');
+    }
+    &.takeoff {
+      background: url('../../assets/icons/departure.svg');
+    }
 }
 
 .route {
   text-transform: uppercase;
   font-size: large;
   vertical-align: middle;
+  line-height: 30px;
+  &-date {
+    font-size: 17px;
+  }
+  &-form {
+    display: inline-block;
+    &-title {
+      margin-top: 35px;
+    }
+  }
 }
 
 md-card-actions {
   text-align: center;
   > p {
-    font-size: 30px;
+    font-size: 20px;
+    color: $main-color;
+    margin: 10px 0;
   }
 }
 
@@ -78,24 +105,50 @@ md-card-content {
   margin-top: 20px;
 }
 
-.ngui-auto-complete > ul li {
-    font-family: 'Raleway', sans-serif;
-    padding: 10px 7px;
-    border: 1px solid rgba(60,60,60,0.06);
-    font-weight: 100;
+md-card-subtitle.rating{
+  margin-left: -1px;
 }
 
-.ngui-auto-complete > ul {
-    background-color: #fff;
-    margin: 0;
+button {
+  text-transform: uppercase;
+  &.action {
+    background-color: $main-button-color;
+    border-radius: 8px;
+    padding: 10px 25px;
+    color: $main-color;
+    font-size: 16px;
+    margin-bottom: 30px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+  }
+  &.search {
+    margin-left: 10px;
+    height: 33px;
+  }
+}
+.info {
+  margin: 50px auto 0;
+  background: lightgray;
+  padding: 30px 0;
+  &-content {
+    display: table;
     width: 100%;
-    overflow-y: auto;
-    list-style-type: none;
-    padding: 0;
-    border: 1px solid rgba(60,60,60,0.05);
-    box-sizing: border-box;
-    animation: slideDown 0.1s;
-    border-top: 0px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+  }
+  &-section {
+    display: table-cell;
+    width: 33.33%;
+    vertical-align: top;
+    padding: 0 30px;
+    img {
+      width: 200px;
+      margin: 0 auto;
+    }
+    &-title {
+      font-size: 20px;
+      color: $main-color;
+      margin-top: 10px;
+    }
+    text-align: center;
+    line-height: 23px;
+  }
 }

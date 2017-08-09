@@ -1,16 +1,18 @@
 <section>
-  <h1> Login </h1>
-  <form>
-    <md-input-container>
-      <input mdInput [(ngModel)]="username" placeholder="Username" name="username" required>
-      <md-error>This field is required</md-error>
-    </md-input-container>
-    <md-input-container>
-      <input mdInput [(ngModel)]="password" placeholder="Password" name="password" type="password" required>
-      <md-error>This field is required</md-error>
-    </md-input-container>
+  <div class="wrapper">
+    <h1> Login </h1>
+    <form>
+      <md-input-container>
+        <input mdInput [(ngModel)]="username" placeholder="Username" name="username" required>
+        <md-error>This field is required</md-error>
+      </md-input-container>
+      <md-input-container>
+        <input mdInput [(ngModel)]="password" placeholder="Password" name="password" type="password" required>
+        <md-error>This field is required</md-error>
+      </md-input-container>
 
-    <button md-raised-button (click)="login()"> login </button>
-  </form>
-  <p class="error"> {{ error }} </p>
+      <button md-raised-button (click)="login()"> login </button>
+    </form>
+    <span class="error"> {{ error }} </span>
+  </div>
 </section>

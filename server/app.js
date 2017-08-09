@@ -59,6 +59,10 @@ app.use(passport.session());
 
 require('./routes')(app);
 
+app.use((req, res, next) => {
+  res.sendfile(__dirname + '/public/index.html');
+});
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');

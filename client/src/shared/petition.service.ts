@@ -35,8 +35,8 @@ export class PetitionService {
       .catch(this.handleError);
   }
 
-  update(id:string, status:string):Observable<object> {
-    return this.http.put(`${this.endpoint}/petition/${id}`, {status: status}, this.options)
+  update(id:string, status:string, creatorID: string):Observable<object> {
+    return this.http.put(`${this.endpoint}/petition/${id}`, {status: status, creatorID: creatorID}, this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }

@@ -1,6 +1,8 @@
+@import '../_vars.scss';
+
 footer {
-  background-color: darkblue;
+  background-color: $main-color;
   height: 300px;
-  color: white;
+  color: $main-text-color;
   text-align: center;
 }

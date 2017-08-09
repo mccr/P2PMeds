@@ -1,5 +1,6 @@
 const SendEventModel = require('./SendEventModel.js');
 const UserModel = require('../User/UserModel.js');
+const RouteModel = require('../Route/RouteModel.js');
 
 /**
  * SendEventController.js
@@ -57,10 +58,31 @@ module.exports = {
      * SendEventController.update()
      */
     update: (req, res) => {
-      console.log(req.body.status);
         SendEventModel.update({_id: req.params.id}, {$set: {status: req.body.status}})
         .exec()
-        .then( response => res.json(response))
+        .then( response => {
+          RouteModel.find({creator_id: req.body.creatorID}, {_id: 1})
+          .exec()
+          .then( routes => {
+            routesID = routes.map( r => r._id);
+            SendEventModel.find({route_id: {$in: routesID}})
+            .exec()
+            .then( petitions => {
+              let completedPetitions = petitions.filter( p => p.status == 'Delivered' || p.status == 'Completed');
+              let rejectedPetitions = petitions.filter( p => p.status == 'Rejected');
+
+              UserModel.find({_id: req.body.creatorID})
+              .exec()
+              .then( user => {
+                if(completedPetitions.length == 3) user.badges[3].active = 'true';
+                if(completedPetitions.length == 6) user.badges[4].active = 'true';
+                if(completedPetitions.length == 10) user.badges[5].active = 'true';
+                if(rejectedPetitions.length == 3) user.badges[9].active = 'true';
+                res.json(response);
+              });
+            });
+          });
+        })
         .catch( err => {
           return res.status(500).json({
               message: 'Error when updating status of sendEvent.',

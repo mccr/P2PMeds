@@ -54,6 +54,7 @@ export class UserComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.session.isLoggedIn().subscribe( user => console.log(user));
   }
   userEditDialog() {
      let userEditDialogRef = this.dialog.open(UserEditComponent, {
@@ -108,9 +109,9 @@ export class UserComponent implements OnInit {
     });
   }
 
-  setStatus(id, event){
+  setStatus(id, event, creatorID){
     console.log(event.target.value)
-    this.petition.update(id, event.target.value).subscribe( (petition:any) => {
+    this.petition.update(id, event.target.value, creatorID).subscribe( (petition:any) => {
         console.log(petition)
         if(petition.n == 1) {
           if(event.target.value == 'Delivered to Carrier') {

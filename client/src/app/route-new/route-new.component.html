@@ -1,22 +1,24 @@
 <section>
-  <h1> New Route </h1>
-  <form (ngSubmit)="newRoute(myForm)" #myForm="ngForm">
-    <md-input-container>
-      <input mdInput ngui-auto-complete [(ngModel)]="from" [source]="worldAirports" placeholder="From" name="from" [max-num-list]="10" required>
-      <md-error>This field is required</md-error>
-    </md-input-container>
-    <md-input-container>
-      <input mdInput ngui-auto-complete [(ngModel)]="to" [source]="veAirports" placeholder="To" name="to" [max-num-list]="5" required>
-      <md-error>This field is required</md-error>
-    </md-input-container>
-    <md-input-container>
-      <input mdInput [(ngModel)]="date" [mdDatepicker]="picker" placeholder="Choose a date" name="date" required>
-      <button mdSuffix [mdDatepickerToggle]="picker"></button>
-      <md-error>This field is required</md-error>
-    </md-input-container>
-    <md-datepicker #picker></md-datepicker>
+  <div class="wrapper">
+    <h1> New Route </h1>
+    <form (ngSubmit)="newRoute(myForm)" #myForm="ngForm">
+      <md-input-container>
+        <input mdInput ngui-auto-complete [(ngModel)]="from" [source]="worldAirports" placeholder="From" name="from" [max-num-list]="10" required>
+        <md-error>This field is required</md-error>
+      </md-input-container>
+      <md-input-container>
+        <input mdInput ngui-auto-complete [(ngModel)]="to" [source]="veAirports" placeholder="To" name="to" [max-num-list]="5" required>
+        <md-error>This field is required</md-error>
+      </md-input-container>
+      <md-input-container>
+        <input mdInput [(ngModel)]="date" [mdDatepicker]="picker" placeholder="Choose a date" name="date" required>
+        <button mdSuffix [mdDatepickerToggle]="picker"></button>
+        <md-error>This field is required</md-error>
+      </md-input-container>
+      <md-datepicker #picker></md-datepicker>
 
-    <button md-raised-button type="submit"> add new route </button>
-  </form>
-  <p class="error"> {{ error }} </p>
+      <button md-raised-button type="submit"> add new route </button>
+    </form>
+    <span class="error"> {{ error }} </span>
+  </div>
 </section>

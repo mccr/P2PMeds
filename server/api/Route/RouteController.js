@@ -1,6 +1,7 @@
 const RouteModel = require('./RouteModel.js');
 const SendEventModel = require('../SendEvent/SendEventModel.js');
 const RatingModel = require('../Rating/RatingModel.js');
+const UserModel = require('../User/UserModel.js');
 
 /**
  * RouteController.js
@@ -75,6 +76,7 @@ module.exports = {
      */
     create: (req, res) => {
       console.log(req.body);
+      console.log(req.user);
         const Route = new RouteModel({
     			from : req.body.from,
     			to : req.body.to,
@@ -83,7 +85,24 @@ module.exports = {
         });
 
         Route.save()
-        .then( Route => res.status(201).json(Route))
+        .then( Route => {
+          RouteModel.find({creator_id: Route.creator_id})
+          .exec()
+          .then( userRoutes => {
+            UserModel.findOne({_id: Route.creator_id})
+            .exec()
+            .then( user => {
+              if(userRoutes.length > 1) user.badges[0].active = 'true';
+              if(userRoutes.length == 3) user.badges[1].active = 'true';
+              if(userRoutes.length == 5) user.badges[2].active = 'true';
+              user.save()
+              .then( user => {
+                console.log(user.badges[0]);
+                res.status(201).json(Route);
+              });
+            });
+          });
+        })
         .catch( err => {
           return res.status(500).json({
               message: 'Error when creating Route',

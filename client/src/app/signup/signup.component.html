@@ -1,26 +1,30 @@
-<h1> Signup </h1>
-<form (ngSubmit)="signup(myForm)" #myForm="ngForm">
-  <md-input-container>
-    <input mdInput [(ngModel)]="username" placeholder="Username" name="username" required>
-    <md-error>This field is required</md-error>
-  </md-input-container>
-  <md-input-container>
-    <input mdInput [(ngModel)]="name" placeholder="Name" name="name" required>
-    <md-error>This field is required</md-error>
-  </md-input-container>
-  <md-input-container>
-    <input mdInput [(ngModel)]="lastName" placeholder="Last Name" name="lastName" required>
-    <md-error>This field is required</md-error>
-  </md-input-container>
-  <md-input-container>
-    <input mdInput [(ngModel)]="email" placeholder="Email" name="email" required>
-    <md-error>This field is required</md-error>
-  </md-input-container>
-  <md-input-container>
-    <input mdInput [(ngModel)]="password" placeholder="Password" name="password" type="password" required>
-    <md-error>This field is required</md-error>
-  </md-input-container>
+<section>
+  <div class="wrapper">
+    <h1> Signup </h1>
+    <form (ngSubmit)="signup(myForm)" #myForm="ngForm">
+      <md-input-container>
+        <input mdInput [(ngModel)]="username" placeholder="Username" name="username" required>
+        <md-error>This field is required</md-error>
+      </md-input-container>
+      <md-input-container>
+        <input mdInput [(ngModel)]="name" placeholder="Name" name="name" required>
+        <md-error>This field is required</md-error>
+      </md-input-container>
+      <md-input-container>
+        <input mdInput [(ngModel)]="lastName" placeholder="Last Name" name="lastName" required>
+        <md-error>This field is required</md-error>
+      </md-input-container>
+      <md-input-container>
+        <input mdInput [(ngModel)]="email" placeholder="Email" name="email" required>
+        <md-error>This field is required</md-error>
+      </md-input-container>
+      <md-input-container>
+        <input mdInput [(ngModel)]="password" placeholder="Password" name="password" type="password" required>
+        <md-error>This field is required</md-error>
+      </md-input-container>
 
-  <button md-raised-button type="submit"> signup </button>
-</form>
-<p class="error"> {{ error }} </p>
+      <button md-raised-button type="submit"> signup </button>
+    </form>
+    <span class="error"> {{ error }} </span>
+  </div>
+</section>

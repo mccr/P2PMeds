@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var UserController = require('./UserController.js');
-
+const express = require('express');
+const router = express.Router();
+const UserController = require('./UserController.js');
+const upload = require('../config/multer');
 
 /*
  * GET
@@ -11,7 +11,7 @@ router.get('/:id', UserController.show);
 /*
  * PUT
  */
-router.put('/:id', UserController.update);
+router.post('/:id', upload.single('file'), UserController.update);
 
 
 module.exports = router;

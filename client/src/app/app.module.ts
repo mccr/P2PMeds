@@ -8,6 +8,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StarRatingModule } from 'angular-star-rating';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
+import { FileSelectDirective } from "ng2-file-upload";
 
 import {
   MaterialModule,
@@ -73,7 +74,8 @@ import { UserRatingComponent } from './user-rating/user-rating.component';
     NavbarComponent,
     UserEditComponent,
     RouteEditComponent,
-    UserRatingComponent
+    UserRatingComponent,
+    FileSelectDirective,
   ],
   entryComponents: [
     UserEditComponent,

@@ -28,7 +28,8 @@ export class UserService {
   }
 
   update(id:string, update:Object):Observable<object> {
-    return this.http.put(`${this.endpoint}/user/${id}`, update, this.options)
+    console.log('service', id, update)
+    return this.http.post(`${this.endpoint}/user/${id}`, update, this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }

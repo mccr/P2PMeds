@@ -3,6 +3,7 @@ var UserModel = require('./UserModel.js'),
     SendEventModel = require('../SendEvent/SendEventModel.js'),
     RatingModel = require('../Rating/RatingModel.js');
 
+
 /**
  * UserController.js
  *
@@ -60,14 +61,16 @@ module.exports = {
    * UserController.update()
    */
   update: (req, res) => {
+    console.log(req.file);
     const id = req.params.id;
+    console.log(id);
     UserModel.findOne({_id: id})
       .exec()
       .then(User => {
         if (!User) return res.status(404).json({message: 'No such User'});
 
         User.email = req.body.email ? req.body.email : User.email;
-        User.badge = req.body.badge ? req.body.badge : User.badge;
+        User.profilePic = req.file.filename ? `/uploads/${req.file.filename}` : User.profilePic;
 
         User.save()
         .then(userSaved => res.json(userSaved))

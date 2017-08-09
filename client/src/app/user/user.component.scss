@@ -1,8 +1,18 @@
+@import '../../_vars.scss';
+
 .flex-container {
   padding: 0;
   margin: 0;
   display: flex;
   width: 100%;
+}
+
+header {
+  margin-top: 60px;
+  padding: 30px;
+  background: url('../../assets/geometric_smooth.jpg');
+  background-size: contain;
+  height: 280px;
 }
 
 .wrap    {
@@ -11,21 +21,18 @@
 
 .flex-item {
   width: 25%;
-  height: 250px;
   margin: 5px;
 }
 
-.header-image {
-  width: 100px;
-  height: 100px;
-  background-image: url('http://www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-indian-girl.png');
-  background-size: cover;
+.route-item {
+  width: 100%;
+  margin: 5px;
 }
 
 button {
   text-transform: uppercase;
   &.remove {
-    background: url('../../assets/images/close-button.svg');
+    background: url('../../assets/icons/close-button.svg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 15px;
@@ -33,8 +40,36 @@ button {
     height: 20px;
     cursor: pointer;
   }
+  &.action {
+    background-color: $main-button-color;
+    border-radius: 8px;
+    padding: 10px 25px;
+    color: $main-color;
+    font-size: 16px;
+    margin-bottom: 30px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    &.alert {
+      color: $main-text-color;
+      background-color: #ff0000;
+    }
+    &.success {
+      color: $main-text-color;
+      background-color: #008000;
+    }
+  }
 }
 
+.petition {
+  &-item {
+    position: relative;
+  }
+  &-actions {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
 
 section {
   width: 90%;
@@ -42,10 +77,78 @@ section {
   margin: 0 auto;
 }
 
-header {
-  margin: 90px 50px 50px;
-}
 
 .edit-button {
   float: right;
+}
+
+.mat-card {
+  font-family: $main-font-family;
+  &-header {
+    display: block;
+  }
+  &-content {
+    font-size: 16px;
+  }
+}
+
+.user-profile {
+  color: $main-color;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 25px;
+  font-size: 20px;
+  .header-image {
+    width: 100px;
+    height: 100px;
+    background-image: url('http://www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-indian-girl.png');
+    background-size: cover;
+    border-radius: 50%;
+    margin: 20px auto;
+  }
+}
+
+
+.airplane {
+    background-size: cover;
+    height: 25px;
+    width: 25px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+    &.landing {
+      background: url('../../assets/icons/arrival.svg');
+    }
+    &.takeoff {
+      background: url('../../assets/icons/departure.svg');
+    }
+}
+
+.route {
+  text-transform: uppercase;
+  font-size: large;
+  vertical-align: middle;
+  line-height: 30px;
+  &-date {
+    font-size: 17px;
+  }
+  &-form {
+    display: inline-block;
+    &-title {
+      margin-top: 35px;
+    }
+  }
+}
+
+.remove-btn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.card-title {
+  font-size: 18px;
+  color: $main-color;
+  margin-top: 15px;
+  text-decoration: underline;
 }
