@@ -33,7 +33,7 @@
           <span *ngIf="!route.route.creator_id.ratingTotal">0/5</span>
           - {{route.ratings.length}} reviews
         </md-card-subtitle>
-        <md-card-subtitle *ngIf='route.route.creator_id.badges.length != 0'>
+        <md-card-subtitle>
           <img *ngIf="route.route.creator_id.badges[0].active" src="{{route.route.creator_id.badges[0].img}}" alt="">
           <img *ngIf="route.route.creator_id.badges[1].active" src="{{route.route.creator_id.badges[1].img}}" alt="">
           <img *ngIf="route.route.creator_id.badges[2].active" src="{{route.route.creator_id.badges[2].img}}" alt="">
@@ -62,7 +62,7 @@
       </md-card-content>
       <md-card-actions>
         <p class="petitions">{{route.petitions.length}} Petitions</p>
-        <button class="action" (click)="newPetition(route.route._id, $event)">Make a petition</button>
+        <button *ngIf="route.route.creator_id._id !== session.user._id" class="action" (click)="newPetition(route.route._id, $event)">Make a petition</button>
       </md-card-actions>
     </md-card>
   </div>

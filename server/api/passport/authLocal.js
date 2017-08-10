@@ -3,7 +3,7 @@ const passport = require('passport');
 const router   = express.Router();
 const User     = require('../User/UserModel');
 const bcrypt   = require('bcrypt');
-const badgesSeed = require('../User/badges');
+const badgesSeed = require('../User/badges').badges;
 
 router.post("/login", (req, res, next) => {
   passport.authenticate('local', (err, user, info) =>  {
@@ -17,7 +17,6 @@ router.post("/login", (req, res, next) => {
           message: 'something went wrong :('
         });
       }
-      console.log(req.user);
       res.status(200).json(req.user);
     });
   })(req, res, next);
@@ -75,7 +74,6 @@ router.get("/logout", function(req, res) {
 
 router.get("/loggedin", function(req, res) {
   if(req.isAuthenticated()) {
-    console.log('isLoggedIn',req.user);
     return res.status(200).json(req.user);
   }
 

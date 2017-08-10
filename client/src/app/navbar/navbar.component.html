@@ -29,5 +29,11 @@
     <div class="mat-button-focus-overlay"></div>
   </a>
   </span>
-  <a class="mat-button" md-button (click)="logout()">Logout</a>
+  <span *ngIf="session.user && session.startLoginCompleted">
+    <a class="mat-button" md-button (click)="logout()">
+      <span class="mat-button-wrapper">Logout</span>
+      <div class="mat-button-ripple mat-ripple"></div>
+      <div class="mat-button-focus-overlay"></div>
+    </a>
+  </span>
 </md-toolbar>

@@ -92,9 +92,9 @@ module.exports = {
             UserModel.findOne({_id: Route.creator_id})
             .exec()
             .then( user => {
-              if(userRoutes.length > 1) user.badges[0].active = 'true';
-              if(userRoutes.length == 3) user.badges[1].active = 'true';
-              if(userRoutes.length == 5) user.badges[2].active = 'true';
+              if(userRoutes.length > 1) user.badges[0].active = true;
+              if(userRoutes.length == 3) user.badges[1].active = true;
+              if(userRoutes.length == 5) user.badges[2].active = true;
               user.save()
               .then( user => {
                 console.log(user.badges[0]);

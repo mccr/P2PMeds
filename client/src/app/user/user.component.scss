@@ -10,9 +10,10 @@
 header {
   margin-top: 60px;
   padding: 30px;
-  background: url('../../assets/geometric_smooth.jpg');
+  background: url('../../assets/geometric_pattern.jpg');
   background-size: contain;
-  height: 280px;
+  height: 250px;
+  text-align: center;
 }
 
 .wrap    {
@@ -75,6 +76,7 @@ section {
   width: 90%;
   box-sizing: border-box;
   margin: 0 auto;
+  padding: 20px;
 }
 
 
@@ -93,11 +95,16 @@ section {
 }
 
 .user-profile {
+  width: 30%;
+  background-color: rgba(255, 255, 255, 0.74);
+  display: inline-block;
+  border-radius: 5px;
   color: $main-color;
   margin: 0 auto;
   text-align: center;
   line-height: 25px;
   font-size: 20px;
+  font-family: $nav-font;
   .header-image {
     width: 100px;
     height: 100px;
@@ -151,5 +158,6 @@ section {
   font-size: 18px;
   color: $main-color;
   margin-top: 15px;
+  margin-bottom: 5px;
   text-decoration: underline;
 }

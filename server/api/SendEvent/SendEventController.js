@@ -74,10 +74,10 @@ module.exports = {
               UserModel.find({_id: req.body.creatorID})
               .exec()
               .then( user => {
-                if(completedPetitions.length == 3) user.badges[3].active = 'true';
-                if(completedPetitions.length == 6) user.badges[4].active = 'true';
-                if(completedPetitions.length == 10) user.badges[5].active = 'true';
-                if(rejectedPetitions.length == 3) user.badges[9].active = 'true';
+                if(completedPetitions.length == 3) user.badges[3].active = true;
+                if(completedPetitions.length == 6) user.badges[4].active = true;
+                if(completedPetitions.length == 10) user.badges[5].active = true;
+                if(rejectedPetitions.length == 3) user.badges[9].active = true;
                 res.json(response);
               });
             });

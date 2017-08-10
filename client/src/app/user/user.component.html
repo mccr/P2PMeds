@@ -8,9 +8,23 @@
     <div>@{{user.username}}</div>
     <div>
       <img *ngIf="user.badges[0].active" src="{{user.badges[0].img}}" alt="">
+      <img *ngIf="user.badges[1].active" src="{{user.badges[1].img}}" alt="">
+      <img *ngIf="user.badges[2].active" src="{{user.badges[2].img}}" alt="">
+      <img *ngIf="user.badges[3].active" src="{{user.badges[3].img}}" alt="">
+      <img *ngIf="user.badges[4].active" src="{{user.badges[4].img}}" alt="">
+      <img *ngIf="user.badges[5].active" src="{{user.badges[5].img}}" alt="">
+      <img *ngIf="user.badges[6].active" src="{{user.badges[6].img}}" alt="">
+      <img *ngIf="user.badges[7].active" src="{{user.badges[7].img}}" alt="">
+      <img *ngIf="user.badges[8].active" src="{{user.badges[8].img}}" alt="">
+      <img *ngIf="user.badges[9].active" src="{{user.badges[9].img}}" alt="">
+      <img *ngIf="user.badges[10].active" src="{{user.badges[10].img}}" alt="">
     </div>
-    <div>promedio de ratings</div>
-    <div>nro de opiniones</div>
+    <!--div class="rating">
+      <div class="star-icon"></div>
+      <span *ngIf="route.route.creator_id.ratingTotal">{{user.ratingTotal/route.ratings.length}}/5</span>
+      <span *ngIf="!route.route.creator_id.ratingTotal">0/5</span>
+      - {{route.ratings.length}} reviews
+    </div-->
   </div>
 </header>
 <section>
@@ -36,7 +50,11 @@
               <div class="route-date">{{route.date | date:'fullDate'}}</div>
             </md-card-header>
             <md-card-content>
-              <div *ngIf="routesWithPetitions">
+              <div *ngIf="routesWithPetitions.length == 0">
+                <div class="card-title">Petitions</div>
+                you don't have any petititons yet!
+              </div>
+              <div *ngIf="routesWithPetitions.length != 0">
                 <div class="card-title">Petitions</div>
                 <div *ngFor="let petition of routesWithPetitions" class="petition-item">
                   <div *ngIf="route._id == petition.route_id._id">
@@ -47,7 +65,7 @@
                         <button *ngIf="petition.status == 'Delivered to Carrier'" (click)="setStatus(petition._id, $event, petition.route_id.creator_id)" value="In Transit" class="action success">In Transit</button>
                         <button *ngIf="petition.status == 'In Transit'"(click)="setStatus(petition._id, $event, petition.route_id.creator_id)" value="Delivered" class="action success">Delivered</button>
                       </div>
-                    <p><i>request by:</i> <a [routerLink]="['/user', petition.requestUser._id]">@{{petition.requestUser.username}}</a></p>
+                    <p><i>request by:</i><a [routerLink]="['/user', petition.requestUser._id]">@{{petition.requestUser.username}}</a></p>
                     <div *ngIf="petition.status !== 'Pending Confirmation' && session.user._id == petition.route_id.creator_id">{{petition.requestUser.email}}</div>
                   </div>
                 </div>

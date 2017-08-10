@@ -54,11 +54,11 @@ export class UserComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.session.isLoggedIn().subscribe( user => console.log(user));
+    this.session.isLoggedIn().subscribe(user => console.log(user));
   }
   userEditDialog() {
      let userEditDialogRef = this.dialog.open(UserEditComponent, {
-      height: '400px',
+      height: '250px',
       width: '600px'
      });
      userEditDialogRef.afterClosed().subscribe(result => {
