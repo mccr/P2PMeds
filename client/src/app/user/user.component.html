@@ -3,7 +3,7 @@
     <button *ngIf="user._id == session.user._id" (click)="userEditDialog()" class="action">edit</button>
   </div>
   <div *ngIf="user" class="user-profile">
-    <div class="header-image"></div>
+    <img class="header-image" src="{{user.profilePic}}"/>
     <div>{{user.name}}</div>
     <div>@{{user.username}}</div>
     <div class="rating">
@@ -85,7 +85,7 @@
       <div class="flex-container wrap" *ngIf="petitionsMade">
       <md-card class="flex-item" *ngFor="let petition of petitionsMade">
         <div class="wrap-petition">
-          <div md-card-avatar class="head-image"></div>
+          <img md-card-avatar class="head-image" src="{{petition.route_id.creator_id.profilePic}}"/>
           <div class="wrap-info">
             <div class="username"><a [routerLink]="['/user', petition.route_id.creator_id._id]">{{petition.route_id.creator_id.name}}</a></div>
             <div *ngIf="petition.status !== 'Pending Confirmation' && session.user._id == petition.requestUser">{{petition.route_id.creator_id.email}}</div>
@@ -136,7 +136,7 @@
       <div class="flex-container wrap" *ngIf="myRatings">
       <md-card class="flex-item" *ngFor="let rating of myRatings">
         <md-card-header class="rating">
-          <div md-card-avatar class="head-image"></div>
+          <img md-card-avatar class="head-image" src="{{petition.route_id.creator_id.profilePic}}"/>
           <md-card-title><i>rated by: </i> <a [routerLink]="['/user', rating.user_id._id]">{{rating.user_id.name}}</a></md-card-title>
         </md-card-header>
         <md-card-content>

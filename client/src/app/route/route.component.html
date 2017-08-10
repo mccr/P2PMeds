@@ -32,7 +32,7 @@
   <div class="flex-container wrap">
     <md-card class="flex-item" *ngFor="let route of routesData">
       <md-card-header>
-        <div md-card-avatar class="header-image"></div>
+        <img md-card-avatar class="header-image" src="{{route.route.creator_id.profilePic}}"/>
         <md-card-title class="username"><a *ngIf="session.user" [routerLink]="['/user', route.route.creator_id._id]">{{route.route.creator_id.name}}</a></md-card-title>
         <md-card-title class="username"><a *ngIf="!session.user" [routerLink]="['login']">{{route.route.creator_id.name}}</a></md-card-title>
         <md-card-subtitle class="rating">
