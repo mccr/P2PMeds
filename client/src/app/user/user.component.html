@@ -133,10 +133,10 @@
     <p *ngIf="petitionsMade.length == 0">No Petitions made yet!</p>
     </md-tab>
     <md-tab label="My Ratings">
-      <div class="flex-container wrap" *ngIf="myRatings">
+      <div class="flex-container wrap" *ngIf="myRatings.length != 0">
       <md-card class="flex-item" *ngFor="let rating of myRatings">
         <md-card-header class="rating">
-          <img md-card-avatar class="head-image" src="{{petition.route_id.creator_id.profilePic}}"/>
+          <img md-card-avatar class="head-image" src="{{rating.user_id.profilePic}}"/>
           <md-card-title><i>rated by: </i> <a [routerLink]="['/user', rating.user_id._id]">{{rating.user_id.name}}</a></md-card-title>
         </md-card-header>
         <md-card-content>
