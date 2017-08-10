@@ -58,6 +58,7 @@ module.exports = {
                   UserModel.findOne({_id: req.user._id})
                   .exec()
                   .then(userLogged => {
+                    console.log(userRatings.length);
                     if(userRatings.length == 3) userLogged.badges[6].active = true;
                     if(userRatings.length == 6) userLogged.badges[7].active = true;
                     if(userRatings.length == 10) userLogged.badges[8].active = true;
