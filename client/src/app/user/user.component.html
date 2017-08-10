@@ -6,25 +6,25 @@
     <div class="header-image"></div>
     <div>{{user.name}}</div>
     <div>@{{user.username}}</div>
+    <div class="rating">
+      <div class="star-icon"></div>
+      <span *ngIf="user.ratingTotal != 0">{{user.ratingTotal/myRatings.length}}/5</span>
+      <span *ngIf="user.ratingTotal == 0">0/5</span>
+      - {{myRatings.length}} reviews
+    </div>
     <div>
-      <img *ngIf="user.badges[0].active" src="{{user.badges[0].img}}" alt="">
-      <img *ngIf="user.badges[1].active" src="{{user.badges[1].img}}" alt="">
-      <img *ngIf="user.badges[2].active" src="{{user.badges[2].img}}" alt="">
-      <img *ngIf="user.badges[3].active" src="{{user.badges[3].img}}" alt="">
-      <img *ngIf="user.badges[4].active" src="{{user.badges[4].img}}" alt="">
-      <img *ngIf="user.badges[5].active" src="{{user.badges[5].img}}" alt="">
-      <img *ngIf="user.badges[6].active" src="{{user.badges[6].img}}" alt="">
-      <img *ngIf="user.badges[7].active" src="{{user.badges[7].img}}" alt="">
-      <img *ngIf="user.badges[8].active" src="{{user.badges[8].img}}" alt="">
-      <img *ngIf="user.badges[9].active" src="{{user.badges[9].img}}" alt="">
+      <img *ngIf="user.badges[0].active" src="{{user.badges[0].img}}" alt="1flight" class="badges">
+      <img *ngIf="user.badges[1].active" src="{{user.badges[1].img}}" alt="3flight" class="badges">
+      <img *ngIf="user.badges[2].active" src="{{user.badges[2].img}}" alt="5flight" class="badges">
+      <img *ngIf="user.badges[3].active" src="{{user.badges[3].img}}" alt="take3"  class="badges">
+      <img *ngIf="user.badges[4].active" src="{{user.badges[4].img}}" alt="take6"  class="badges">
+      <img *ngIf="user.badges[5].active" src="{{user.badges[5].img}}" alt="take 10" class="badges">
+      <img *ngIf="user.badges[6].active" src="{{user.badges[6].img}}" alt="rate3" class="badges">
+      <img *ngIf="user.badges[7].active" src="{{user.badges[7].img}}" alt="rate5" class="badges">
+      <img *ngIf="user.badges[8].active" src="{{user.badges[8].img}}" alt="rate10" class="badges">
+      <img *ngIf="user.badges[9].active" src="{{user.badges[9].img}}" alt="reject3" class="badges">
       <img *ngIf="user.badges[10].active" src="{{user.badges[10].img}}" alt="signup" class="badges">
     </div>
-    <!--div class="rating">
-      <div class="star-icon"></div>
-      <span *ngIf="route.route.creator_id.ratingTotal">{{user.ratingTotal/route.ratings.length}}/5</span>
-      <span *ngIf="!route.route.creator_id.ratingTotal">0/5</span>
-      - {{route.ratings.length}} reviews
-    </div-->
   </div>
 </header>
 <section>
@@ -89,24 +89,24 @@
           <div class="wrap-info">
             <div class="username"><a [routerLink]="['/user', petition.route_id.creator_id._id]">{{petition.route_id.creator_id.name}}</a></div>
             <div *ngIf="petition.status !== 'Pending Confirmation' && session.user._id == petition.requestUser">{{petition.route_id.creator_id.email}}</div>
-            <div class="rating">
+            <!--div class="rating">
               <div class="star-icon"></div>
-              <span *ngIf="petition.route_id.creator_id.ratingTotal">{{petition.route_id.creator_id}}/5</span>
-              <span *ngIf="!petition.route_id.creator_id.ratingTotal">0/5</span>
-              - ratings reviews
-            </div>
+              <span *ngIf="petition.route_id.creator_id.ratingTotal != 0">{{petition.route_id.creator_id.ratingTotal}}/5</span>
+              <span *ngIf="petition.route_id.creator_id.ratingTotal == 0">0/5</span>
+              - {{myRatings.length}} reviews
+            </div-->
             <div>
-              <img *ngIf="petition.route_id.creator_id.badges[0].active" src="{{petition.route_id.creator_id.badges[0].img}}" alt="">
-              <img *ngIf="petition.route_id.creator_id.badges[1].active" src="{{petition.route_id.creator_id.badges[1].img}}" alt="">
-              <img *ngIf="petition.route_id.creator_id.badges[2].active" src="{{petition.route_id.creator_id.badges[2].img}}" alt="">
-              <img *ngIf="petition.route_id.creator_id.badges[3].active" src="{{petition.route_id.creator_id.badges[3].img}}" alt="">
-              <img *ngIf="petition.route_id.creator_id.badges[4].active" src="{{petition.route_id.creator_id.badges[4].img}}" alt="">
-              <img *ngIf="petition.route_id.creator_id.badges[5].active" src="{{petition.route_id.creator_id.badges[5].img}}" alt="">
-              <img *ngIf="petition.route_id.creator_id.badges[6].active" src="{{petition.route_id.creator_id.badges[6].img}}" alt="">
-              <img *ngIf="petition.route_id.creator_id.badges[7].active" src="{{petition.route_id.creator_id.badges[7].img}}" alt="">
-              <img *ngIf="petition.route_id.creator_id.badges[8].active" src="{{petition.route_id.creator_id.badges[8].img}}" alt="">
-              <img *ngIf="petition.route_id.creator_id.badges[9].active" src="{{petition.route_id.creator_id.badges[9].img}}" alt="">
-              <img *ngIf="petition.route_id.creator_id.badges[10].active" src="{{petition.route_id.creator_id.badges[10].img}}" alt="">
+              <img *ngIf="petition.route_id.creator_id.badges[0].active" src="{{petition.route_id.creator_id.badges[0].img}}" alt="1flight" class="badges">
+              <img *ngIf="petition.route_id.creator_id.badges[1].active" src="{{petition.route_id.creator_id.badges[1].img}}" alt="3flight" class="badges">
+              <img *ngIf="petition.route_id.creator_id.badges[2].active" src="{{petition.route_id.creator_id.badges[2].img}}" alt="5flight" class="badges">
+              <img *ngIf="petition.route_id.creator_id.badges[3].active" src="{{petition.route_id.creator_id.badges[3].img}}" alt="take3"  class="badges">
+              <img *ngIf="petition.route_id.creator_id.badges[4].active" src="{{petition.route_id.creator_id.badges[4].img}}" alt="take6"  class="badges">
+              <img *ngIf="petition.route_id.creator_id.badges[5].active" src="{{petition.route_id.creator_id.badges[5].img}}" alt="take 10" class="badges">
+              <img *ngIf="petition.route_id.creator_id.badges[6].active" src="{{petition.route_id.creator_id.badges[6].img}}" alt="rate3" class="badges">
+              <img *ngIf="petition.route_id.creator_id.badges[7].active" src="{{petition.route_id.creator_id.badges[7].img}}" alt="rate5" class="badges">
+              <img *ngIf="petition.route_id.creator_id.badges[8].active" src="{{petition.route_id.creator_id.badges[8].img}}" alt="rate10" class="badges">
+              <img *ngIf="petition.route_id.creator_id.badges[9].active" src="{{petition.route_id.creator_id.badges[9].img}}" alt="reject3" class="badges">
+              <img *ngIf="petition.route_id.creator_id.badges[10].active" src="{{petition.route_id.creator_id.badges[10].img}}" alt="signup" class="badges">
             </div>
           </div>
         </div>

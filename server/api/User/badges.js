@@ -1,57 +1,57 @@
 module.exports.badges = [
   {
     name:'1flight',
-    img: 'http://placehold.it/20',
+    img: '/badges/placeholder.svg',
     active: false
   },
   {
     name:'3flight',
-    img: 'http://placehold.it/20',
+    img: '/badges/route.svg',
     active: false
   },
   {
     name:'5flight',
-    img: 'http://placehold.it/20',
+    img: '/badges/worldwide.svg',
     active: false
   },
   {
     name:'3takeThings',
-    img: 'http://placehold.it/20',
+    img: '/badges/drugs.svg',
     active: false
   },
   {
     name:'6takeThings',
-    img: 'http://placehold.it/20',
+    img: '/badges/package.svg',
     active: false
   },
   {
     name:'10takeThings',
-    img: 'http://placehold.it/20',
+    img: '/badges/healthcare.svg',
     active: false
   },
   {
     name:'3rates',
-    img: 'http://placehold.it/20',
+    img: '/badges/bronze-medal.svg',
     active: false
   },
   {
     name:'5rates',
-    img: 'http://placehold.it/20',
+    img: '/badges/rating.svg',
     active: false
   },
   {
     name:'10rates',
-    img: 'http://placehold.it/20',
+    img: '/badges/medal.svg',
     active: false
   },
   {
     name:'3reject',
-    img: 'http://placehold.it/20',
+    img: '/badges/dislike.svg',
     active: false
   },
   {
     name:'signup',
-    img: 'http://placehold.it/20',
+    img: '/badges/flag.svg',
     active: true
   }
 ];

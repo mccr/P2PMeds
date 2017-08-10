@@ -62,6 +62,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { RouteEditComponent } from './route-edit/route-edit.component';
 import { UserRatingComponent } from './user-rating/user-rating.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { UserRatingComponent } from './user-rating/user-rating.component';
     RouteEditComponent,
     UserRatingComponent,
     FileSelectDirective,
+    FooterComponent,
   ],
   entryComponents: [
     UserEditComponent,

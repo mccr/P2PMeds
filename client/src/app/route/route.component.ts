@@ -62,7 +62,7 @@ export class RouteComponent implements OnInit {
           this.petition.create(routeID).subscribe(petition => {
             console.log(petition)
             let petitionChange = this.routesData['route'].filter(r => r['_id'] == routeID);
-            petitionChange
+            console.log(petitionChange) 
           })
         }
   }

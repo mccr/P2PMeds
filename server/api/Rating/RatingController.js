@@ -69,24 +69,9 @@ module.exports = {
                     });
                   });
                 });
-              })
-              .catch(err => {
-                console.log(err);
-                return res.status(500).json({
-                  message: 'Error when creating Rating',
-                  error: err
-                });
-              });
-            })
-            .catch(err => {
-              console.log(err);
-              return res.status(500).json({
-                message: 'Error when creating Rating',
-                error: err
               });
             });
           });
-
         })
         .catch( err => {
           return res.status(500).json({

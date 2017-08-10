@@ -1,9 +1,13 @@
 <header>
- <p></p>
+<div class="header-text">
+  Peer to Peer Medicines is a community that creates a network of
+  humanitarian help, connecting travelers with those who need to send
+  urgent medicines to their loved ones in Venezuela.
+</div>
 </header>
 <section>
   <div class="wrapper">
-    <h1 class="route-form-title"> Search for routes </h1>
+    <h1 class="route-form-title"> Need to send something? </h1>
     <form class="route-form" (ngSubmit)="searchRoutes(myForm)" #myForm="ngForm">
       <md-input-container>
         <input mdInput ngui-auto-complete [(ngModel)]="from" [source]="worldAirports" placeholder="From" name="from" [max-num-list]="10" required>
@@ -34,17 +38,17 @@
           - {{route.ratings.length}} reviews
         </md-card-subtitle>
         <md-card-subtitle>
-          <img *ngIf="route.route.creator_id.badges[0].active" src="{{route.route.creator_id.badges[0].img}}" alt="">
-          <img *ngIf="route.route.creator_id.badges[1].active" src="{{route.route.creator_id.badges[1].img}}" alt="">
-          <img *ngIf="route.route.creator_id.badges[2].active" src="{{route.route.creator_id.badges[2].img}}" alt="">
-          <img *ngIf="route.route.creator_id.badges[3].active" src="{{route.route.creator_id.badges[3].img}}" alt="">
-          <img *ngIf="route.route.creator_id.badges[4].active" src="{{route.route.creator_id.badges[4].img}}" alt="">
-          <img *ngIf="route.route.creator_id.badges[5].active" src="{{route.route.creator_id.badges[5].img}}" alt="">
-          <img *ngIf="route.route.creator_id.badges[6].active" src="{{route.route.creator_id.badges[6].img}}" alt="">
-          <img *ngIf="route.route.creator_id.badges[7].active" src="{{route.route.creator_id.badges[7].img}}" alt="">
-          <img *ngIf="route.route.creator_id.badges[8].active" src="{{route.route.creator_id.badges[8].img}}" alt="">
-          <img *ngIf="route.route.creator_id.badges[9].active" src="{{route.route.creator_id.badges[9].img}}" alt="">
-          <img *ngIf="route.route.creator_id.badges[10].active" src="{{route.route.creator_id.badges[10].img}}" alt="">
+          <img *ngIf="route.route.creator_id.badges[0].active" src="{{route.route.creator_id.badges[0].img}}" alt="1flight" class="badges">
+          <img *ngIf="route.route.creator_id.badges[1].active" src="{{route.route.creator_id.badges[1].img}}" alt="3flight" class="badges">
+          <img *ngIf="route.route.creator_id.badges[2].active" src="{{route.route.creator_id.badges[2].img}}" alt="5flight" class="badges">
+          <img *ngIf="route.route.creator_id.badges[3].active" src="{{route.route.creator_id.badges[3].img}}" alt="take3"  class="badges">
+          <img *ngIf="route.route.creator_id.badges[4].active" src="{{route.route.creator_id.badges[4].img}}" alt="take6"  class="badges">
+          <img *ngIf="route.route.creator_id.badges[5].active" src="{{route.route.creator_id.badges[5].img}}" alt="take 10" class="badges">
+          <img *ngIf="route.route.creator_id.badges[6].active" src="{{route.route.creator_id.badges[6].img}}" alt="rate3" class="badges">
+          <img *ngIf="route.route.creator_id.badges[7].active" src="{{route.route.creator_id.badges[7].img}}" alt="rate5" class="badges">
+          <img *ngIf="route.route.creator_id.badges[8].active" src="{{route.route.creator_id.badges[8].img}}" alt="rate10" class="badges">
+          <img *ngIf="route.route.creator_id.badges[9].active" src="{{route.route.creator_id.badges[9].img}}" alt="reject3" class="badges">
+          <img *ngIf="route.route.creator_id.badges[10].active" src="{{route.route.creator_id.badges[10].img}}" alt="signup" class="badges">
         </md-card-subtitle>
       </md-card-header>
       <md-card-content>
@@ -78,18 +82,18 @@
     <div class="info-content">
       <div class="info-section">
         <img src="/assets/icons/shield.svg" alt="">
-        <div class="info-section-title">Viaja super guay y seguro</div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+        <div class="info-section-title">Trustworthy</div>
+        <p>Send medicines to your loved ones in a safe way.</p>
       </div>
       <div class="info-section">
         <img src="/assets/icons/pulse.svg" alt="">
-        <div class="info-section-title">Viaja super guay y seguro</div>
-        <p>Lorem ipsum dolor sit amet. Eos reprehenderit nemo minima dolor, corrupti numquam! Magni iusto praesentium sed ab, aperiam ut eum, eligendi.</p>
+        <div class="info-section-title">Caring</div>
+        <p>Help those that need it the most for a good cause.</p>
       </div>
       <div class="info-section">
         <img src="/assets/icons/fast-forward.svg" alt="">
-        <div class="info-section-title">Viaja super guay y seguro</div>
-        <p>Eos reprehenderit nemo minima dolor, corrupti numquam! Magni iusto praesentium sed ab, aperiam ut eum, eligendi, voluptates placeat libero.</p>
+        <div class="info-section-title">Fast</div>
+        <p>Go through a quick and easy process designed for urgent needs.</p>
       </div>
     </div>
   </div>
