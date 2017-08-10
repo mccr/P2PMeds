@@ -51,15 +51,20 @@ app.use(session({
   saveUninitialized: true,
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
-
-require('./api/passport/config');
-
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./routes')(app);
+require('./api/passport/config');
 
-app.use((req, res, next) => {
+//require('./routes')(app);
+app.use('/api/', require('./api/passport/authLocal'));
+app.use('/api/rating', require('./api/Rating/RatingRoutes'));
+app.use('/api/route', require('./api/Route/RouteRoutes'));
+app.use('/api/petition', require('./api/SendEvent/SendEventRoutes'));
+app.use('/api/user', require('./api/User/UserRoutes'));
+app.use('/api/airports', require('./api/Airports/airportRoutes'));
+
+app.use(function(req, res) {
   res.sendfile(__dirname + '/public/index.html');
 });
 

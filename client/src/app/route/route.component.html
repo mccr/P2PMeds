@@ -26,7 +26,7 @@
     <md-card class="flex-item" *ngFor="let route of routesData">
       <md-card-header>
         <div md-card-avatar class="header-image"></div>
-        <md-card-title class="username">{{route.route.creator_id.name}}</md-card-title>
+        <md-card-title class="username"><a [routerLink]="['/user', route.route.creator_id._id]"></a>{{route.route.creator_id.name}}</md-card-title>
         <md-card-subtitle class="rating">
           <div class="star-icon"></div>
           <span *ngIf="route.route.creator_id.ratingTotal">{{route.route.creator_id.ratingTotal/route.ratings.length}}/5</span>
@@ -62,7 +62,13 @@
       </md-card-content>
       <md-card-actions>
         <p class="petitions">{{route.petitions.length}} Petitions</p>
-        <button *ngIf="route.route.creator_id._id !== session.user._id" class="action" (click)="newPetition(route.route._id, $event)">Make a petition</button>
+        <span *ngIf="session.user">
+          <button *ngIf="route.route.creator_id._id !== session.user._id" class="action" (click)="newPetition(route.route._id, $event)">Make a petition</button>
+        </span>
+        <span *ngIf="!session.user">
+          <button class="action" [routerLink]="['login']">Make a petition</button>
+        </span>
+
       </md-card-actions>
     </md-card>
   </div>

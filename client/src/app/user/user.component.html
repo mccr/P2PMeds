@@ -17,7 +17,7 @@
       <img *ngIf="user.badges[7].active" src="{{user.badges[7].img}}" alt="">
       <img *ngIf="user.badges[8].active" src="{{user.badges[8].img}}" alt="">
       <img *ngIf="user.badges[9].active" src="{{user.badges[9].img}}" alt="">
-      <img *ngIf="user.badges[10].active" src="{{user.badges[10].img}}" alt="">
+      <img *ngIf="user.badges[10].active" src="{{user.badges[10].img}}" alt="signup" class="badges">
     </div>
     <!--div class="rating">
       <div class="star-icon"></div>
@@ -84,21 +84,45 @@
     <md-tab label="My Petitions">
       <div class="flex-container wrap" *ngIf="petitionsMade">
       <md-card class="flex-item" *ngFor="let petition of petitionsMade">
-        <md-card-header>
-          <div md-card-avatar class="header-image"></div>
-          <md-card-title>Route Creator: @{{petition.route_id.creator_id.username}}</md-card-title>
-          <md-card-title *ngIf="petition.status !== 'Pending Confirmation' && session.user._id == petition.requestUser">{{petition.route_id.creator_id.email}}</md-card-title>
-          <md-card-subtitle>BADGES</md-card-subtitle>
-          <md-card-subtitle><i>star icon</i><a>promedio de rating</a></md-card-subtitle>
-          <md-card-subtitle><a>total de opiniones</a></md-card-subtitle>
-        </md-card-header>
+        <div class="wrap-petition">
+          <div md-card-avatar class="head-image"></div>
+          <div class="wrap-info">
+            <div class="username"><a [routerLink]="['/user', petition.route_id.creator_id._id]">{{petition.route_id.creator_id.name}}</a></div>
+            <div *ngIf="petition.status !== 'Pending Confirmation' && session.user._id == petition.requestUser">{{petition.route_id.creator_id.email}}</div>
+            <div class="rating">
+              <div class="star-icon"></div>
+              <span *ngIf="petition.route_id.creator_id.ratingTotal">{{petition.route_id.creator_id}}/5</span>
+              <span *ngIf="!petition.route_id.creator_id.ratingTotal">0/5</span>
+              - ratings reviews
+            </div>
+            <div>
+              <img *ngIf="petition.route_id.creator_id.badges[0].active" src="{{petition.route_id.creator_id.badges[0].img}}" alt="">
+              <img *ngIf="petition.route_id.creator_id.badges[1].active" src="{{petition.route_id.creator_id.badges[1].img}}" alt="">
+              <img *ngIf="petition.route_id.creator_id.badges[2].active" src="{{petition.route_id.creator_id.badges[2].img}}" alt="">
+              <img *ngIf="petition.route_id.creator_id.badges[3].active" src="{{petition.route_id.creator_id.badges[3].img}}" alt="">
+              <img *ngIf="petition.route_id.creator_id.badges[4].active" src="{{petition.route_id.creator_id.badges[4].img}}" alt="">
+              <img *ngIf="petition.route_id.creator_id.badges[5].active" src="{{petition.route_id.creator_id.badges[5].img}}" alt="">
+              <img *ngIf="petition.route_id.creator_id.badges[6].active" src="{{petition.route_id.creator_id.badges[6].img}}" alt="">
+              <img *ngIf="petition.route_id.creator_id.badges[7].active" src="{{petition.route_id.creator_id.badges[7].img}}" alt="">
+              <img *ngIf="petition.route_id.creator_id.badges[8].active" src="{{petition.route_id.creator_id.badges[8].img}}" alt="">
+              <img *ngIf="petition.route_id.creator_id.badges[9].active" src="{{petition.route_id.creator_id.badges[9].img}}" alt="">
+              <img *ngIf="petition.route_id.creator_id.badges[10].active" src="{{petition.route_id.creator_id.badges[10].img}}" alt="">
+            </div>
+          </div>
+        </div>
         <md-card-content>
-          <p>Date: {{petition.route_id.date | date:'shortDate'}}</p>
-          <p>From: {{petition.route_id.from}}
-          <i>airplane icon</i>
-          To: {{petition.route_id.to}}</p>
-          <h4>Petition:</h4>
-          <p>status: {{petition.status}}</p>
+          <div class="entire-route">
+            <div class="route">
+              <span class="airplane takeoff"></span>
+              {{petition.route_id.from}}
+            </div>
+            <div class="route">
+              <span class="airplane landing"></span>
+              {{petition.route_id.to}}
+            </div>
+          </div>
+          <p class="route-date">{{petition.route_id.date | date:'fullDate'}}</p>
+          <div class=""><i>Status: </i> {{petition.status}}</div>
         </md-card-content>
         <md-card-actions>
           <button class="action success" *ngIf="session.user._id == petition.requestUser && petition.status == 'Confirmed'" (click)="setStatus(petition._id, $event)" value="Delivered to Carrier">Delivered to Carrier</button>
@@ -111,16 +135,19 @@
     <md-tab label="My Ratings">
       <div class="flex-container wrap" *ngIf="myRatings">
       <md-card class="flex-item" *ngFor="let rating of myRatings">
-        <md-card-header>
-          <div md-card-avatar class="header-image"></div>
-          <md-card-title>creator: {{rating.user_id.username}}</md-card-title>
-          <md-card-subtitle>BADGES</md-card-subtitle>
-          <md-card-subtitle><i>star icon</i><a>promedio de rating</a></md-card-subtitle>
-          <md-card-subtitle><a>total de opiniones</a></md-card-subtitle>
+        <md-card-header class="rating">
+          <div md-card-avatar class="head-image"></div>
+          <md-card-title><i>rated by: </i> <a [routerLink]="['/user', rating.user_id._id]">{{rating.user_id.name}}</a></md-card-title>
         </md-card-header>
         <md-card-content>
-          <p>Stars: {{rating.stars}}</p>
-          <p>comment: {{rating.comment}}
+          <div class="">
+            <div *ngIf="rating.stars == 1"><div class="star-icon"></div></div>
+            <div *ngIf="rating.stars == 2"><div class="star-icon"></div><div class="star-icon"></div></div>
+            <div *ngIf="rating.stars == 3"><div class="star-icon"></div><div class="star-icon"></div><div class="star-icon"></div></div>
+            <div *ngIf="rating.stars == 4"><div class="star-icon"></div><div class="star-icon"></div><div class="star-icon"></div><div class="star-icon"></div></div>
+            <div *ngIf="rating.stars == 5"><div class="star-icon"></div><div class="star-icon"></div><div class="star-icon"></div><div class="star-icon"></div><div class="star-icon"></div></div>
+          </div>
+          <p>{{rating.comment}}</p>
         </md-card-content>
       </md-card>
     </div>

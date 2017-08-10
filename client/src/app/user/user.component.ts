@@ -119,6 +119,7 @@ export class UserComponent implements OnInit {
             res[0]['status'] = event.target.value;
           } else {
             let result = this.routesWithPetitions.filter((e:any) => e._id == id);
+            console.log(result);
             result[0]['status'] = event.target.value;
           }
         }

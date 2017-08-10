@@ -30,6 +30,9 @@
   </a>
   </span>
   <span *ngIf="session.user && session.startLoginCompleted">
+    <a class="mat-button">
+      <span class="mat-button-wrapper">{{session.user.username}}</span>
+    </a>
     <a class="mat-button" md-button (click)="logout()">
       <span class="mat-button-wrapper">Logout</span>
       <div class="mat-button-ripple mat-ripple"></div>
