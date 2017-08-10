@@ -6,6 +6,7 @@
     <img class="header-image" src="{{user.profilePic}}"/>
     <div>{{user.name}}</div>
     <div>@{{user.username}}</div>
+    <div *ngIf="session.user._id == user._id">{{user.email}}</div>
     <div class="rating">
       <div class="star-icon"></div>
       <span *ngIf="user.ratingTotal != 0">{{user.ratingTotal/myRatings.length}}/5</span>
