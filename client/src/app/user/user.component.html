@@ -124,7 +124,7 @@
           <p class="route-date">{{petition.route_id.date | date:'fullDate'}}</p>
           <div class=""><i>Status: </i> {{petition.status}}</div>
         </md-card-content>
-        <md-card-actions>
+        <md-card-actions class="center">
           <button class="action success" *ngIf="session.user._id == petition.requestUser && petition.status == 'Confirmed'" (click)="setStatus(petition._id, $event)" value="Delivered to Carrier">Delivered to Carrier</button>
           <button class="action" *ngIf="session.user._id == petition.requestUser && petition.status == 'Delivered'" (click)="userRatingDialog(petition._id, petition.route_id.creator_id._id)">Rate {{petition.route_id.creator_id.username}}</button>
         </md-card-actions>
