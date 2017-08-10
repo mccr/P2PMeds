@@ -31,6 +31,7 @@ export class RouteComponent implements OnInit {
   }
 
   searchRoutes(myForm){
+    this.message = '';
     if(myForm.value.from && myForm.value.to && myForm.value.date){
       let day: string, month: string, year: string;
       day = (myForm.value.date.getDate() < 10) ? '0'+(myForm.value.date.getDate()) : myForm.value.date.getDate();
@@ -43,7 +44,10 @@ export class RouteComponent implements OnInit {
       }
       console.log(formValue)
       this.route.list(formValue).subscribe((foundData:Array<Object>) => {
-        this.routesData = foundData
+        this.routesData = foundData;
+        if(this.routesData.length == 0){
+          this.message = 'Try and look for another date';
+        }
         console.log(this.routesData);
       });
     }
@@ -52,17 +56,19 @@ export class RouteComponent implements OnInit {
   newPetition(routeID, e){
       let button = e.target;
       let route = this.routesData.filter( (r:object) => r['route']['_id'] == routeID);
-      console.log(this.session.user['_id'])
       console.log(route[0])
       let petitionDone = route[0]['petitions'].filter( p => p['requestUser'] == this.session.user['_id']);
+            console.log(this.session.user['_id'])
+                  console.log(petitionDone)
         if(petitionDone.length != 0) {
           button.textContent = 'you made a petition';
           button.disabled = true;
         } else  {
           this.petition.create(routeID).subscribe(petition => {
             console.log(petition)
-            let petitionChange = this.routesData['route'].filter(r => r['_id'] == routeID);
-            console.log(petitionChange) 
+            let petitionChange = this.routesData.filter(r => r['route']['_id'] == routeID);
+            console.log(petitionChange)
+            petitionChange[0]['petitions'].push(petition);
           })
         }
   }

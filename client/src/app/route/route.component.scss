@@ -107,6 +107,11 @@ section {
   }
 }
 
+.message {
+  color: #F5E134;
+  text-align: center;
+}
+
 md-card-actions {
   text-align: center;
   > p {
@@ -169,4 +174,8 @@ button {
     text-align: center;
     line-height: 23px;
   }
+}
+
+.badges {
+  width: 30px;
 }

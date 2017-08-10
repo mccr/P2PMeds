@@ -26,11 +26,15 @@
       <button md-raised-button type="submit" class="search"> search </button>
     </form>
   </div>
+  <div class="message">
+    <h3>{{message}}</h3>
+  </div>
   <div class="flex-container wrap">
     <md-card class="flex-item" *ngFor="let route of routesData">
       <md-card-header>
         <div md-card-avatar class="header-image"></div>
-        <md-card-title class="username"><a [routerLink]="['/user', route.route.creator_id._id]"></a>{{route.route.creator_id.name}}</md-card-title>
+        <md-card-title class="username"><a *ngIf="session.user" [routerLink]="['/user', route.route.creator_id._id]">{{route.route.creator_id.name}}</a></md-card-title>
+        <md-card-title class="username"><a *ngIf="!session.user" [routerLink]="['login']">{{route.route.creator_id.name}}</a></md-card-title>
         <md-card-subtitle class="rating">
           <div class="star-icon"></div>
           <span *ngIf="route.route.creator_id.ratingTotal">{{route.route.creator_id.ratingTotal/route.ratings.length}}/5</span>
@@ -72,7 +76,6 @@
         <span *ngIf="!session.user">
           <button class="action" [routerLink]="['login']">Make a petition</button>
         </span>
-
       </md-card-actions>
     </md-card>
   </div>
