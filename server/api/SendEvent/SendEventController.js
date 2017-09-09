@@ -78,7 +78,15 @@ module.exports = {
                 if(completedPetitions.length == 6) user.badges[4].active = true;
                 if(completedPetitions.length == 10) user.badges[5].active = true;
                 if(rejectedPetitions.length == 3) user.badges[9].active = true;
-                res.json(response);
+
+                user.markModified('badges');
+                user.save()
+                .then( user => {
+                  console.log(user);
+                  res.status(201).json(response);
+                })
+                .catch(e => console.log(e));
+
               });
             });
           });

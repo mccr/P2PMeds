@@ -63,6 +63,7 @@ module.exports = {
                     if(userRatings.length == 6) userLogged.badges[7].active = true;
                     if(userRatings.length == 10) userLogged.badges[8].active = true;
 
+                    user.markModified('badges');
                     userLogged.save()
                     .then( userSaved => {
                       console.log(userSaved);
